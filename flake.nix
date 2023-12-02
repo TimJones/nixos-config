@@ -26,6 +26,7 @@
 	  nixos-hardware.nixosModules.framework-13-7040-amd
 	  disko.nixosModules.disko
           ./boxen/laptop-02
+	  ./system/common
 	  ./apps/common
         ];
       };

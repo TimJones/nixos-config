@@ -1,6 +1,5 @@
 {
   imports = [
-    ../common
     ./disko.nix
   ];
 
