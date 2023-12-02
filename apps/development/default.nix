@@ -2,8 +2,9 @@
   pkgs,
   ...
 }: {
+  programs.git.enable = true;
+
   environment.systemPackages = [
-    pkgs.git
     pkgs.tig
     pkgs.gnumake
   ];
