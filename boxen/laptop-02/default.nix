@@ -6,9 +6,13 @@
 
   networking.hostName = "laptop-02";
   nixpkgs.hostPlatform = "x86_64-linux"; 
-  hardware.cpu.amd.updateMicrocode = true;
   time.timeZone = "Europe/Madrid"; 
   swapDevices = [ { device = "/swap/swapfile"; } ];
+  
+  hardware = {
+    cpu.amd.updateMicrocode = true;
+    enableRedistributableFirmware = true;
+  };
   
   boot = {
     kernelModules = [ "kvm-amd" ];
