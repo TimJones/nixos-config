@@ -8,6 +8,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -15,6 +19,7 @@
     nixpkgs,
     nixos-hardware,
     disko,
+    home-manager,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -30,6 +35,16 @@
 	  ./system/hde
 	  ./apps
         ];
+      };
+    };
+
+    homeConfigurations = {
+      "tim@laptop-02" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+	  ./home/tim
+	];
       };
     };
   };

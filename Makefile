@@ -10,3 +10,7 @@ install-%: ## Installs NixOS for a given box
 .PHONY: build
 build-%: ## Builds the NixOS system for a given box
 	sudo -E nixos-rebuild switch --flake .#$*
+
+.PHONY: rehome
+rehome-%: ## Uses home-manager to reconfigure the home env
+	home-manager switch --flake .#$*
