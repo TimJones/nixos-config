@@ -9,6 +9,7 @@
   swapDevices = [ { device = "/swap/swapfile"; } ];
   
   hardware = {
+    bluetooth.enable = true;
     cpu.amd.updateMicrocode = true;
     enableRedistributableFirmware = true;
   };
@@ -26,11 +27,6 @@
     };
   };
 
-  networking.wireless = {
-    enable = true;
-    userControlled.enable = true;
-  };
- 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }
