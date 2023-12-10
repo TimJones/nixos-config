@@ -42,7 +42,6 @@
 	  disko.nixosModules.disko
           ./boxen/laptop-02
 	  ./system
-	  ./system/hde
         ];
       };
     };
