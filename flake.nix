@@ -38,7 +38,6 @@
           ./boxen/laptop-02
 	  ./system
 	  ./system/hde
-	  ./apps
         ];
       };
     };
