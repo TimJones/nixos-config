@@ -10,6 +10,7 @@
   
   hardware = {
     bluetooth.enable = true;
+    sensor.iio.enable = true;
     cpu.amd.updateMicrocode = true;
     enableRedistributableFirmware = true;
   };
