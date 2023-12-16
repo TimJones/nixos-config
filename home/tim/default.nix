@@ -5,8 +5,6 @@
     ./desktop
   ];
 
-  programs.home-manager.enable = true;
-
   home = {
     username = "tim";
     homeDirectory = "/home/tim";

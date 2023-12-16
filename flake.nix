@@ -46,17 +46,6 @@
       };
     };
 
-    homeConfigurations = {
-      "tim@laptop-02" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-	   nixvim.homeManagerModules.nixvim
-	  ./home/tim
-	];
-      };
-    };
-
     packages.x86_64-linux = {
       iso-laptop-02 = nixos-generators.nixosGenerate {
         format = "install-iso";
