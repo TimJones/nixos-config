@@ -31,6 +31,9 @@
 	      };
 	      "SYSTEM/swap" = {
 	        mountpoint = "/swap";
+		swap = {
+		  swapfile.size = "48G";
+		};
   	      };
 	      "DATA" = {};
 	      "DATA/home" = {
