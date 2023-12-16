@@ -3,10 +3,44 @@
     enable = true;
 
     settings = {
+      # Global variables
+      "$mod" = "SUPER";
+
       # Laptop screen
       monitor = "eDP-1, highres, auto, 1";
 
-      "$mod" = "SUPER";
+      # General config
+      gestures.workspace_swipe = true;
+      general.border_size = 2;
+      decoration.rounding = 10;
+      misc.force_default_wallpaper = 0;
+
+      env = [
+        "XCURSOR_SIZE,24"
+      ];
+
+      input = {
+        follow_mouse = 1;
+	touchpad.natural_scroll = true;
+      };
+
+      dwindle ={
+        pseudotile = true;
+	preserve_split = true;
+      };
+
+      animations = {
+        enabled = true;
+        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+	animation = [
+	  "windows, 1, 7, myBezier"
+	  "windowsOut, 1, 7, default, popin 80%"
+	  "border, 1, 10, default"
+	  "borderangle, 1, 8, default"
+	  "fade, 1, 7, default"
+	  "workspaces, 1, 6, default"
+	];
+      };
 
       exec-once = [
         "dunst"
@@ -59,6 +93,12 @@
 	"$mod SHIFT, 8, movetoworkspace, 8"
 	"$mod SHIFT, 9, movetoworkspace, 9"
 	"$mod SHIFT, 0, movetoworkspace, 10"
+      ];
+
+      bindm = [
+        # Move/resize winfows with $mod + LMB/RMB-drag
+        "$mod, mouse:272, movewindow"
+	"$mod, mouse:273, resizewindow"
       ];
     };
   };
