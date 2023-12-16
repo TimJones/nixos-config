@@ -40,7 +40,7 @@
         modules = [
 	  nixos-hardware.nixosModules.framework-13-7040-amd
 	  disko.nixosModules.disko
-          ./boxen/laptop-02
+          ./system/laptop-02
 	  ./system
         ];
       };
@@ -53,7 +53,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
 	modules = [
 	  disko.nixosModules.disko
-	  ./boxen/laptop-02/disko.nix
+	  ./system/laptop-02/disko.nix
 	  ({ config, pkgs, ...}: let
 	    systemDev = self.nixosConfigurations."laptop-02".config.system.build.toplevel;
 	    diskoScript = pkgs.writeShellScriptBin "disko" "${config.system.build.diskoScript}";
