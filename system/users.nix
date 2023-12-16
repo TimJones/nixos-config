@@ -27,6 +27,7 @@
       isNormalUser = true;
       initialPassword = "bootstrap";
       extraGroups = ["wheel"];
+      shell = pkgs.zsh;
     };
   };
 }

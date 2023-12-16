@@ -9,9 +9,13 @@
       "$mod" = "SUPER";
 
       bind = [
-	"$mod, Q, killactive"
+        "$mod, Q, exit"
+        "$mod, C, killactive"
 	"$mod, M, fullscreen, 1" # Maximise
 	"$mod, F, fullscreen, 0" # Fullscreen
+
+	# App launchers
+	"$mod, return, exec, kitty"
 
 	# Move window focus
 	"$mod, left, movefocus, l"

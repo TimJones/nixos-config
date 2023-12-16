@@ -14,4 +14,5 @@
 
   # Desktop stuff
   programs.hyprland.enable = true;
+  programs.zsh.enable = true;
 }
