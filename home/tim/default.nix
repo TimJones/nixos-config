@@ -2,6 +2,7 @@
   imports = [
     ./neovim.nix
     ./git.nix
+    ./desktop
   ];
 
   programs.home-manager.enable = true;

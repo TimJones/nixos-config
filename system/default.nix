@@ -11,4 +11,7 @@
   # Use NetworkManager
   networking.networkmanager.enable = true;
   users.users.tim.extraGroups = [ "networkmanager" ];
+
+  # Desktop stuff
+  programs.hyprland.enable = true;
 }
