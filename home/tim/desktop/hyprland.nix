@@ -4,7 +4,7 @@
 
     settings = {
       # Laptop screen
-      monitor = "eDP1, highres, auto, 1";
+      monitor = "eDP-1, highres, auto, 1";
 
       "$mod" = "SUPER";
 
