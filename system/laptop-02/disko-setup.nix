@@ -1,3 +1,4 @@
+# Keep this file minimal as it is included in the installer ISO
 {
   disko.devices.disk.main = {
     type = "disk";
@@ -19,29 +20,38 @@
 	  size = "100%";
 	  content = {
 	    type = "btrfs";
+	    postCreateHook = ''
+	      (
+                btrfs_mnt=$(mktemp -d)
+                mount /dev/disk/by-partlabel/disk-main-OS "$btrfs_mnt" -o subvol=/
+                trap "umount $btrfs_mnt; rm -rf $btrfs_mnt" EXIT
+
+                mkdir -p "$btrfs_mnt"/persistence/snapshots/{root,home} 
+                btrfs subvolume snapshot -r "$btrfs_mnt/root" "$btrfs_mnt/persistence/snapshots/root/new"
+                btrfs subvolume snapshot -r "$btrfs_mnt/home" "$btrfs_mnt/persistence/snapshots/home/new"
+              )
+            '';
 	    subvolumes = {
-	      "SYSTEM" = {};
-	      "SYSTEM/rootfs" = {
+	      "root" = {
 	        mountpoint = "/";
 	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
 	      };
-	      "SYSTEM/nix" = {
+	      "nix" = {
 	        mountpoint = "/nix";
 	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
 	      };
-	      "SYSTEM/swap" = {
+	      "swap" = {
 	        mountpoint = "/swap";
 		swap = {
 		  swapfile.size = "48G";
 		};
   	      };
-	      "DATA" = {};
-	      "DATA/home" = {
+	      "home" = {
 	        mountpoint = "/home";
 	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
 	      };
-	      "DATA/logs" = {
-	        mountpoint = "/var/logs";
+	      "persistence" = {
+	        mountpoint = "/persist";
 	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
 	      };
 	    };

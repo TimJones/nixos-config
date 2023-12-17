@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    impermanence.url = "github:nix-community/impermanence";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +31,7 @@
     home-manager,
     nixvim,
     nixos-generators,
+    impermanence,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -40,6 +42,7 @@
         modules = [
 	  nixos-hardware.nixosModules.framework-13-7040-amd
 	  disko.nixosModules.disko
+	  inputs.impermanence.nixosModules.impermanence
           ./system/laptop-02
 	  ./system
         ];
@@ -53,7 +56,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
 	modules = [
 	  disko.nixosModules.disko
-	  ./system/laptop-02/disko.nix
+	  ./system/laptop-02/disko-setup.nix
 	  ({ config, pkgs, ...}: let
 	    systemDev = self.nixosConfigurations."laptop-02".config.system.build.toplevel;
 	    diskoScript = pkgs.writeShellScriptBin "disko" "${config.system.build.diskoScript}";
