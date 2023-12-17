@@ -28,6 +28,9 @@
       initialPassword = "bootstrap";
       extraGroups = ["wheel"];
       shell = pkgs.zsh;
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINpmeGNaB1+VCX2EsqI9eD5RvCdBqs34Xi8arCEsz4R8 tim@desktop-01"
+      ];
     };
   };
 }
