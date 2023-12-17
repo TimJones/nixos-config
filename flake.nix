@@ -75,6 +75,12 @@
 	      diskoScript
 	      installScript
             ];
+            # Use NetworkManager in place of wpa_supplicant
+	    networking = {
+	      wireless.enable = false;
+              networkmanager.enable = true;
+	    };
+            users.users.nixos.extraGroups = [ "networkmanager" ];
 	  })
         ];
       };
