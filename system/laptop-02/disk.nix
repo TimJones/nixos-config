@@ -40,8 +40,12 @@
 	        mountpoint = "/home";
 	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
 	      };
-	      "DATA/logs" = {
-	        mountpoint = "/var/logs";
+	      "DATA/persistence" = {
+	        mountpoint = "/persist";
+	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
+	      };
+	      "DATA/snapshots" = {
+	        mountpoint = "/snapshots";
 	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
 	      };
 	    };
@@ -50,4 +54,6 @@
       };
     };
   };
+
+  fileSystems."/persist".neededForBoot = true;
 }

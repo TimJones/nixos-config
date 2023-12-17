@@ -1,12 +1,11 @@
 {
   imports = [
-    ./disko.nix
+    ./disk.nix
   ];
 
   networking.hostName = "laptop-02";
   nixpkgs.hostPlatform = "x86_64-linux"; 
   time.timeZone = "Europe/Madrid"; 
-  swapDevices = [ { device = "/swap/swapfile"; } ];
   
   hardware = {
     bluetooth.enable = true;

@@ -3,6 +3,7 @@
     ./nix.nix
     ./users.nix
     ./ssh.nix
+    ./impermanence.nix
   ];
 
   # Allow realtime priority to user processes
