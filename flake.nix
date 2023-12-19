@@ -60,6 +60,8 @@
 	  ({ config, pkgs, ...}: let
 	    systemDev = self.nixosConfigurations."laptop-02".config.system.build.toplevel;
 	    diskoScript = pkgs.writeShellScriptBin "disko" "${config.system.build.diskoScript}";
+	    diskoFormatScript = pkgs.writeShellScriptBin "disko-format" "${config.system.build.formatScript}";
+	    diskoMountScript = pkgs.writeShellScriptBin "disko-mount" "${config.system.build.mountScript}";
 	    installScript = pkgs.writeShellScriptBin "install-system" ''
 	      set -euo pipefail
 
@@ -80,6 +82,8 @@
             disko.enableConfig = false;
 	    environment.systemPackages = [
 	      diskoScript
+	      diskoMountScript
+	      diskoFormatScript
 	      installScript
             ];
             # Use NetworkManager in place of wpa_supplicant
