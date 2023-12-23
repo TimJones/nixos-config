@@ -19,6 +19,20 @@
 	  size = "100%";
 	  content = {
 	    type = "btrfs";
+	    postCreateHook = ''
+	      (
+	        MNTPOINT=$(mktemp -d)
+		mount /dev/disk/by-partlabel/disk-main-OS "$MNTPOINT" -o subvol=/
+		trap 'umount $MNTPOINT; rm -rf $MNTPOINT' EXIT
+		btrfs subvolume snapshot -r "$MNTPOINT"/SYSTEM/rootfs "$MNTPOINT"/SYSTEM/rootfs-clean
+	      )
+	      (
+	        MNTPOINT=$(mktemp -d)
+		mount /dev/disk/by-partlabel/disk-main-OS "$MNTPOINT" -o subvol=/
+		trap 'umount $MNTPOINT; rm -rf $MNTPOINT' EXIT
+		btrfs subvolume snapshot -r "$MNTPOINT"/DATA/home "$MNTPOINT"/DATA/home-clean
+	      )
+	    '';
 	    subvolumes = {
 	      "SYSTEM" = {};
 	      "SYSTEM/rootfs" = {
