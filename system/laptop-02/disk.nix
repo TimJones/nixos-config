@@ -1,4 +1,19 @@
 {
+  lib,
+  ...
+}: {
+  fileSystems."/persist".neededForBoot = true;
+  fileSystems."/nix".neededForBoot = true;
+
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    mkdir -p /mnt/disk-main-OS
+    mount /dev/disk/by-partlabel/disk-main-OS /mnt/disk-main-OS -o subvol=/
+    btrfs subvolume delete /mnt/disk-main-OS/rootfs/*
+    btrfs subvolume snapshot /mnt/disk-main-OS/rootfs-clean /mnt/disk-main-OS/rootfs
+    umount /dev/disk-main-OS
+    rm -rf /mnt/disk-main-OS
+  '';
+
   disko.devices.disk.main = {
     type = "disk";
     device = "/dev/disk/by-id/nvme-WD_BLACK_SN850X_4000GB_23270P802370";
@@ -25,8 +40,8 @@
 		mount /dev/disk/by-partlabel/disk-main-OS "$MNTPOINT" -o subvol=/
 		trap 'umount $MNTPOINT; rm -rf $MNTPOINT' EXIT
 		mkdir -p "$MNTPOINT"/persistence/snapshots
-		btrfs subvolume snapshot -r "$MNTPOINT"/rootfs "$MNTPOINT"/persistence/snapshots/rootfs-clean
-		btrfs subvolume snapshot -r "$MNTPOINT"/home "$MNTPOINT"/persistence/snapshots/home-clean
+		btrfs subvolume snapshot -r "$MNTPOINT"/rootfs "$MNTPOINT"/persistence/snapshots/clean-rootfs
+		btrfs subvolume snapshot -r "$MNTPOINT"/home "$MNTPOINT"/persistence/snapshots/clean-home
 	      )
 	    '';
 	    subvolumes = {
@@ -58,6 +73,4 @@
       };
     };
   };
-
-  fileSystems."/persist".neededForBoot = true;
 }
