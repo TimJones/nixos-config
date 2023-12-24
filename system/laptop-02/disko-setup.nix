@@ -1,19 +1,5 @@
+# Keep this file minimal as it is included in the installer ISO
 {
-  lib,
-  ...
-}: {
-  fileSystems."/persist".neededForBoot = true;
-  fileSystems."/nix".neededForBoot = true;
-
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    mkdir -p /mnt/disk-main-OS
-    mount /dev/disk/by-partlabel/disk-main-OS /mnt/disk-main-OS -o subvol=/
-    btrfs subvolume delete /mnt/disk-main-OS/rootfs/*
-    btrfs subvolume snapshot /mnt/disk-main-OS/rootfs-clean /mnt/disk-main-OS/rootfs
-    umount /dev/disk-main-OS
-    rm -rf /mnt/disk-main-OS
-  '';
-
   disko.devices.disk.main = {
     type = "disk";
     device = "/dev/disk/by-id/nvme-WD_BLACK_SN850X_4000GB_23270P802370";

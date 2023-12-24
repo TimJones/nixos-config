@@ -56,7 +56,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
 	modules = [
 	  disko.nixosModules.disko
-	  ./system/laptop-02/disk.nix
+	  ./system/laptop-02/disko-setup.nix
 	  ({ config, pkgs, ...}: let
 	    systemDev = self.nixosConfigurations."laptop-02".config.system.build.toplevel;
 	    diskoScript = pkgs.writeShellScriptBin "disko" "${config.system.build.diskoScript}";

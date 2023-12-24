@@ -1,6 +1,6 @@
 {
   imports = [
-    ./disk.nix
+    ./disko-setup.nix
   ];
 
   networking.hostName = "laptop-02";
