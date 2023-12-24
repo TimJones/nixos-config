@@ -24,42 +24,31 @@
 	        MNTPOINT=$(mktemp -d)
 		mount /dev/disk/by-partlabel/disk-main-OS "$MNTPOINT" -o subvol=/
 		trap 'umount $MNTPOINT; rm -rf $MNTPOINT' EXIT
-		btrfs subvolume snapshot -r "$MNTPOINT"/SYSTEM/rootfs "$MNTPOINT"/SYSTEM/rootfs-clean
-	      )
-	      (
-	        MNTPOINT=$(mktemp -d)
-		mount /dev/disk/by-partlabel/disk-main-OS "$MNTPOINT" -o subvol=/
-		trap 'umount $MNTPOINT; rm -rf $MNTPOINT' EXIT
-		btrfs subvolume snapshot -r "$MNTPOINT"/DATA/home "$MNTPOINT"/DATA/home-clean
+		btrfs subvolume snapshot -r "$MNTPOINT"/rootfs "$MNTPOINT"/persistence/snapshots/rootfs-clean
+		btrfs subvolume snapshot -r "$MNTPOINT"/home "$MNTPOINT"/persistence/snapshots/home-clean
 	      )
 	    '';
 	    subvolumes = {
-	      "SYSTEM" = {};
-	      "SYSTEM/rootfs" = {
+	      "rootfs" = {
 	        mountpoint = "/";
 	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
 	      };
-	      "SYSTEM/nix" = {
+	      "nix" = {
 	        mountpoint = "/nix";
 	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
 	      };
-	      "SYSTEM/swap" = {
+	      "swap" = {
 	        mountpoint = "/swap";
 		swap = {
 		  swapfile.size = "48G";
 		};
   	      };
-	      "DATA" = {};
-	      "DATA/home" = {
+	      "home" = {
 	        mountpoint = "/home";
 	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
 	      };
-	      "DATA/persistence" = {
+	      "persistence" = {
 	        mountpoint = "/persist";
-	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
-	      };
-	      "DATA/snapshots" = {
-	        mountpoint = "/snapshots";
 	        mountOptions = [ "compress=zstd" "noatime" "nodiratime" ];
 	      };
 	    };
