@@ -10,7 +10,7 @@
     
     if [[ -e "$MNTPOINT/rootfs" ]]; then
         mkdir -p "$MNTPOINT/old_roots"
-        timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+        timestamp=$(date --date="@$(stat -c %Y $MNTPOINT/rootfs)" "+%Y-%m-%-d_%H:%M:%S")
         mv "$MNTPOINT/rootfs" "$MNTPOINT/old_roots/$timestamp"
     fi
 
