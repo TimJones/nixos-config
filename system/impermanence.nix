@@ -5,31 +5,32 @@
   fileSystems."/persist".neededForBoot = true;
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''
-    MNTPOINT=$(mktemp -d)
-    mount /dev/disk/by-partlabel/disk-main-OS "$MNTPOINT" -o subvol=/
-    
-    if [[ -e "$MNTPOINT/rootfs" ]]; then
-        mkdir -p "$MNTPOINT/old_roots"
-        timestamp=$(date --date="@$(stat -c %Y $MNTPOINT/rootfs)" "+%Y-%m-%-d_%H:%M:%S")
-        mv "$MNTPOINT/rootfs" "$MNTPOINT/old_roots/$timestamp"
-    fi
+    (
+      btrfs_mnt=$(mktemp -d)
+      mount /dev/disk/by-partlabel/disk-main-OS "$btrfs_mnt" -o subvol=/
+      trap "umount $btrfs_mnt; rm -rf $btrfs_mnt" EXIT
 
-    delete_subvolume_recursively() {
+      delete_subvolume_recursively() {
         IFS=$'\n'
-        for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-            delete_subvolume_recursively "$MNTPOINT/$i"
+        for vol in $(btrfs subvolume list -o "$1" | cut -d ' ' -f 9-); do
+          delete_subvolume_recursively "$btrfs_mnt/$vol"
         done
         btrfs subvolume delete "$1"
-    }
+      }
 
-    for i in $(find $MNTPOINT/old_roots/ -maxdepth 1 -mtime +30); do
-        delete_subvolume_recursively "$i"
-    done
+      for vol in root home; do
+        if [[ -e "$btrfs_mnt/$vol" ]] && [[ -e "$btrfs_mnt/persistence/snapshots/$vol/new" ]]; then
+            timestamp=$(date --date="@$(stat -c %Y $btrfs_mnt/$vol)" "+%Y-%m-%-d_%H:%M:%S")
+            mv "$btrfs_mnt/$vol" "$btrfs_mnt/persistence/snapshots/$vol/$timestamp"
+        fi
 
-    btrfs subvolume create $MNTPOINT/rootfs
+        btrfs subvolume snapshot "$btrfs_mnt/persistence/snapshots/$vol/new" "$btrfs_mnt/$vol"
 
-    umount "$MNTPOINT"
-    rm -rf "$MNTPOINT"
+        for snap in $(find "$btrfs_mnt/persistence/snapshots/$vol/" -maxdepth 1 -mtime +30); do
+          delete_subvolume_recursively "$snap"
+        done
+      done
+    )
   '';
 
   environment.persistence."/persist" = {
