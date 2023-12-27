@@ -3,6 +3,7 @@
   ...
 }: {
   fileSystems."/persist".neededForBoot = true;
+  fileSystems."/home".neededForBoot = true;
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     (
@@ -42,5 +43,7 @@
     directories = [
       "/var/log"
     ];
+    # Ensure that the user home dir is created in /persist with correct owner & access
+    users.tim = {};
   };
 }
