@@ -1,23 +1,14 @@
+# This is *NOT* a home-manager impermanence module, but imported into the NixOS module directly
 {
-  inputs,
-  ...
-}: {
-  imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
+  directories = [
+    "Downloads"
+    "Music"
+    "Pictures"
+    "Documents"
+    "Videos"
+    "projects"
   ];
-  
-  home.persistence."/persist/home/tim" = {
-    allowOther = false;
-    directories = [
-      "Downloads"
-      "Music"
-      "Pictures"
-      "Documents"
-      "Videos"
-      "projects"
-    ];
-    files = [
-      ".zsh_history"
-    ];
-  };
+  files = [
+    ".zsh_history"
+  ];
 }

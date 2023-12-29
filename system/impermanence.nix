@@ -43,7 +43,6 @@
     directories = [
       "/var/log"
     ];
-    # Ensure that the user home dir is created in /persist with correct owner & access
-    users.tim = {};
+    users.tim = import ../home/tim/impermanence.nix;
   };
 }

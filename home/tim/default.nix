@@ -3,7 +3,6 @@
     ./neovim.nix
     ./git.nix
     ./desktop
-    ./impermanence.nix
   ];
 
   home = {
