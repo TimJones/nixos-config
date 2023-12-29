@@ -11,5 +11,6 @@
   ];
   files = [
     ".zsh_history"
+    ".ssh/id_ed25519"
   ];
 }
