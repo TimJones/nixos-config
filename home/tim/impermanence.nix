@@ -7,6 +7,7 @@
     "Documents"
     "Videos"
     "projects"
+    ".mozilla/firefox"
   ];
   files = [
     ".zsh_history"
