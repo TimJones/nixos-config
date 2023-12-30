@@ -7,14 +7,11 @@
     ./users.nix
     ./ssh.nix
     ./impermanence.nix
+    ./networkmanager.nix
   ];
 
   # Allow realtime priority to user processes
   security.rtkit.enable = true;
-
-  # Use NetworkManager
-  networking.networkmanager.enable = true;
-  users.users.tim.extraGroups = [ "networkmanager" ];
 
   # Desktop stuff
   programs.hyprland.enable = true;
@@ -30,5 +27,11 @@
     age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
     # Force host unlocking to *only* use age
     gnupg.sshKeyPaths = [];
+
+    secrets = {
+      passwd_tim.neededForUsers = true;
+      # Secrets seem to need to be delcared before use, then filled in later when sops-nix runs
+      networkmanager_env = {};
+    };
   };
 }

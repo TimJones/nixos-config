@@ -25,7 +25,6 @@
 
   users.mutableUsers = false;
 
-  sops.secrets.passwd_tim.neededForUsers = true;
 
   users.users = {
     tim = {
