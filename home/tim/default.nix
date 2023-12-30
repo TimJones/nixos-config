@@ -3,6 +3,7 @@
     ./neovim.nix
     ./git.nix
     ./desktop
+    ./pgp.nix
   ];
 
   home = {

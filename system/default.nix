@@ -16,4 +16,7 @@
   # Desktop stuff
   programs.hyprland.enable = true;
   programs.zsh.enable = true;
+
+  # Improved support for YubiKey
+  services.udev.packages = [ pkgs.yubikey-personalization ];
 }
