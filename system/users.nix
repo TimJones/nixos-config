@@ -2,6 +2,7 @@
   inputs,
   outputs,
   pkgs,
+  config,
   ...
 }: {
   # Use home-manager as a system module
@@ -22,10 +23,14 @@
     inputs.home-manager.packages.${pkgs.system}.default
   ];
 
+  users.mutableUsers = false;
+
+  sops.secrets.passwd_tim.neededForUsers = true;
+
   users.users = {
     tim = {
       isNormalUser = true;
-      initialPassword = "bootstrap";
+      hashedPasswordFile = config.sops.secrets.passwd_tim.path;
       extraGroups = ["wheel"];
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = [

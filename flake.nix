@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence";
+    sops-nix.url = "github:Mic92/sops-nix";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +33,7 @@
     nixvim,
     nixos-generators,
     impermanence,
+    sops-nix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -43,6 +45,7 @@
 	  nixos-hardware.nixosModules.framework-13-7040-amd
 	  disko.nixosModules.disko
 	  inputs.impermanence.nixosModules.impermanence
+	  sops-nix.nixosModules.sops
           ./system/laptop-02
 	  ./system
         ];

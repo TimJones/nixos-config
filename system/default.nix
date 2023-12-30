@@ -1,4 +1,7 @@
 {
+  pkgs,
+  ...
+}: {
   imports = [
     ./nix.nix
     ./users.nix
@@ -19,4 +22,13 @@
 
   # Improved support for YubiKey
   services.udev.packages = [ pkgs.yubikey-personalization ];
+
+  # Secrets!
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    # impermanence mounts aren't available when sops-nix starts
+    age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
+    # Force host unlocking to *only* use age
+    gnupg.sshKeyPaths = [];
+  };
 }
