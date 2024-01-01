@@ -1,6 +1,5 @@
-{
-  config,
-  ...
+{ config
+, ...
 }: {
   # Use NetworkManager
   users.users.tim.extraGroups = [ "networkmanager" ];
@@ -14,43 +13,43 @@
       profiles = {
         home-wifi = {
           connection = {
-  	  id = "LlamasJones";
-  	  type = "wifi";
-  	};
+            id = "LlamasJones";
+            type = "wifi";
+          };
           wifi = {
-  	  mode = "infrastructure";
-  	  ssid = "LlamasJones";
-  	};
-  	wifi-security = {
-  	  key-mgmt = "wpa-psk";
-  	  psk = "$HOME_PSK";
-  	};
-  	ipv4 = {
-  	  method = "auto";
-  	};
-  	ipv6 = {
-  	  method = "disabled";
-  	};
+            mode = "infrastructure";
+            ssid = "LlamasJones";
+          };
+          wifi-security = {
+            key-mgmt = "wpa-psk";
+            psk = "$HOME_PSK";
+          };
+          ipv4 = {
+            method = "auto";
+          };
+          ipv6 = {
+            method = "disabled";
+          };
         };
         mum-wifi = {
           connection = {
-  	  id = "VM8335228";
-  	  type = "wifi";
-  	};
+            id = "VM8335228";
+            type = "wifi";
+          };
           wifi = {
-  	  mode = "infrastructure";
-  	  ssid = "VM8335228";
-  	};
-  	wifi-security = {
-  	  key-mgmt = "wpa-psk";
-  	  psk = "$MUM_PSK";
-  	};
-  	ipv4 = {
-  	  method = "auto";
-  	};
-  	ipv6 = {
-  	  method = "disabled";
-        };
+            mode = "infrastructure";
+            ssid = "VM8335228";
+          };
+          wifi-security = {
+            key-mgmt = "wpa-psk";
+            psk = "$MUM_PSK";
+          };
+          ipv4 = {
+            method = "auto";
+          };
+          ipv6 = {
+            method = "disabled";
+          };
         };
       };
     };

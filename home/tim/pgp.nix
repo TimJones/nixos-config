@@ -4,8 +4,8 @@
     publicKeys = [
       {
         # YubiKey
-	trust = 5;
-	text = ''
+        trust = 5;
+        text = ''
           -----BEGIN PGP PUBLIC KEY BLOCK-----
 
           mDMEYjJAIBYJKwYBBAHaRw8BAQdAS+zM/Xj6zY/bmwOKQNIujqqddP+EYf3FjHaf

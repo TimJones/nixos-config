@@ -4,16 +4,16 @@
   ];
 
   networking.hostName = "laptop-02";
-  nixpkgs.hostPlatform = "x86_64-linux"; 
-  time.timeZone = "Europe/Madrid"; 
-  
+  nixpkgs.hostPlatform = "x86_64-linux";
+  time.timeZone = "Europe/Madrid";
+
   hardware = {
     bluetooth.enable = true;
     sensor.iio.enable = true;
     cpu.amd.updateMicrocode = true;
     enableRedistributableFirmware = true;
   };
-  
+
   boot = {
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];

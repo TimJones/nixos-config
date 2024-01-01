@@ -11,7 +11,7 @@
     dirHashes = {
       personal = "~/projects/personal";
       work = "~/projects/siderolabs";
-    };  
+    };
   };
 
   programs.kitty = {

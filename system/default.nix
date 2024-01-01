@@ -1,6 +1,5 @@
-{
-  pkgs,
-  ...
+{ pkgs
+, ...
 }: {
   imports = [
     ./nix.nix
@@ -26,12 +25,12 @@
     # impermanence mounts aren't available when sops-nix starts
     age.sshKeyPaths = [ "/persist/etc/ssh/ssh_host_ed25519_key" ];
     # Force host unlocking to *only* use age
-    gnupg.sshKeyPaths = [];
+    gnupg.sshKeyPaths = [ ];
 
     secrets = {
       passwd_tim.neededForUsers = true;
       # Secrets seem to need to be delcared before use, then filled in later when sops-nix runs
-      networkmanager_env = {};
+      networkmanager_env = { };
     };
   };
 }

@@ -1,6 +1,5 @@
-{
-  pkgs,
-  ...
+{ pkgs
+, ...
 }: {
   home.packages = with pkgs; [
     tig
@@ -13,16 +12,16 @@
     userEmail = "timniverse@gmail.com";
 
     extraConfig = {
-      init.defaultBranch = "main";      
+      init.defaultBranch = "main";
       pull.ff = "only";
       push = {
         default = "current";
-	autoSetupRemote = true;
+        autoSetupRemote = true;
       };
     };
 
     includes = [{
-      condition = "gitdir:~/projects/siderolabs/";  
+      condition = "gitdir:~/projects/siderolabs/";
       contents = {
         tag.gpgSign = true;
         commit.gpgSign = true;
