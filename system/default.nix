@@ -19,6 +19,14 @@
   # Improved support for YubiKey
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
+  # Sound!
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
   # Secrets!
   sops = {
     defaultSopsFile = ./secrets.yaml;
