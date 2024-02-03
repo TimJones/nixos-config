@@ -1,4 +1,6 @@
-{
+{ pkgs
+, ...
+}: {
   imports = [
     ./disko-setup.nix
   ];
@@ -15,6 +17,7 @@
   };
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
     loader = {
