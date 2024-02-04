@@ -7,6 +7,7 @@
     ./ssh.nix
     ./impermanence.nix
     ./networkmanager.nix
+    ./kde.nix
   ];
 
   # Allow realtime priority to user processes
