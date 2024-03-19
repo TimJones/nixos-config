@@ -15,6 +15,7 @@
     ./git.nix
     ./neovim.nix
     ./gpg.nix
+    ./password-store.nix
     ./hyprland
     ./firefox.nix
   ];
