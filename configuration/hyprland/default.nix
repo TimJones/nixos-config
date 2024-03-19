@@ -1,12 +1,16 @@
-{
+{ pkgs
+, ...
+}: {
   imports = [
     ./waybar.nix
     ./wofi.nix
     ./kitty.nix
   ];
 
+  services.udisks2.enable = true;
+  environment.systemPackages = [ pkgs.udiskie ];
+  
   programs.hyprland.enable = true;
-
   home-manager.users.tim.services.dunst.enable = true;
   home-manager.users.tim.wayland.windowManager.hyprland = {
     enable = true;
