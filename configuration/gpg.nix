@@ -39,4 +39,11 @@
     enableZshIntegration = true;
     pinentryFlavor = "tty";
   };
+
+  environment.persistence."/persist".users.tim.directories = [
+    { 
+      directory = ".gnupg";
+      mode = "u=rwx,g=,o=";
+    }
+  ];
 }
