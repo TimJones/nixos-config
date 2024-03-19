@@ -1,14 +1,28 @@
 { config
 , ...
 }: {
-  # Use NetworkManager
+  # Allow user to manage networks
   users.users.tim.extraGroups = [ "networkmanager" ];
 
+  # Store PSKs in SOPS
+  sops.secrets = {
+    "wifi/home/psk" = {};
+    "wifi/mum/psk" = {};
+    "wifi/jiloca/psk" = {};
+  };
+  # And create files that can be used with envsubst
+  sops.templates."wifi-psk.env".content = ''
+    HOME_PSK=${config.sops.placeholder."wifi/home/psk"}
+    MUM_PSK=${config.sops.placeholder."wifi/mum/psk"}
+    JILOCA_PSK=${config.sops.placeholder."wifi/jiloca/psk"}
+  '';
+
+  # Use NetworkManager
   networking.networkmanager = {
     enable = true;
     ensureProfiles = {
       environmentFiles = [
-        config.sops.secrets.networkmanager_env.path
+        config.sops.templates."wifi-psk.env".path
       ];
       profiles = {
         home-wifi = {
@@ -43,6 +57,26 @@
           wifi-security = {
             key-mgmt = "wpa-psk";
             psk = "$MUM_PSK";
+          };
+          ipv4 = {
+            method = "auto";
+          };
+          ipv6 = {
+            method = "disabled";
+          };
+        };
+        jiloca-wifi = {
+          connection = {
+            id = "MOVISTAR_DC50";
+            type = "wifi";
+          };
+          wifi = {
+            mode = "infrastructure";
+            ssid = "MOVISTAR_DC50";
+          };
+          wifi-security = {
+            key-mgmt = "wpa-psk";
+            psk = "$JILOCA_PSK";
           };
           ipv4 = {
             method = "auto";

@@ -1,5 +1,14 @@
 {
-  wayland.windowManager.hyprland = {
+  imports = [
+    ./waybar.nix
+    ./wofi.nix
+    ./kitty.nix
+  ];
+
+  programs.hyprland.enable = true;
+
+  home-manager.users.tim.services.dunst.enable = true;
+  home-manager.users.tim.wayland.windowManager.hyprland = {
     enable = true;
 
     settings = {

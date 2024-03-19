@@ -1,5 +1,10 @@
-{
-  programs.gpg = {
+{ pkgs
+, ...
+}: {
+  # Improved support for YubiKey
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+
+  home-manager.users.tim.programs.gpg = {
     enable = true;
     publicKeys = [
       {
@@ -28,7 +33,7 @@
     ];
   };
 
-  services.gpg-agent = {
+  home-manager.users.tim.services.gpg-agent = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;

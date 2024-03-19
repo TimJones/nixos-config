@@ -1,5 +1,5 @@
 {
-  programs.wofi = {
+  home-manager.users.tim.programs.wofi = {
     enable = true;
 
     style = ''

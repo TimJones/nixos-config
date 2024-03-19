@@ -1,12 +1,14 @@
 keys:
   # User keys
   - &yubikey 5D7964FF2DB426ACB3C3505AA2A702DD5B689F45
+  - &tim age14y022wl4kddtsl6r54s8r3s6j75qc4e4tshhxw6sugy06qlvwa7sgrjfqs
   # Host keys
   - &laptop-02 age136xxlufx2lvp5tvc8d7mx7y2qhq4vh4k973xdc9tcs2wtv592q6qeh0gag
 creation_rules:
-  - path_regex: system/secrets.yaml
+  - path_regex: configuration/secrets.yaml
     key_groups:
       - pgp:
           - *yubikey
         age:
+          - *tim
           - *laptop-02

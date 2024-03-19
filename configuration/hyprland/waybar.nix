@@ -1,5 +1,5 @@
 {
-  programs.waybar = {
+  home-manager.users.tim.programs.waybar = {
     enable = true;
 
     settings = {
