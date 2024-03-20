@@ -10,7 +10,7 @@
         margin-right = 10;
         modules-left = [ "cpu" "memory" "temperature" "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "tray" "network" "backlight" "battery" "clock" "group/power" ];
+        modules-right = [ "tray" "backlight" "battery" "clock" "group/power" ];
 
         cpu = {
           interval = 5;
@@ -40,11 +40,6 @@
           interval = 5;
           format = "{percent}% {icon}";
           format-icons = [ "󱩎" "󱩑" "󱩔" "󰛨" ];
-        };
-
-        network = {
-          format-wifi = "{essid} ({signalStrength}%) {icon}";
-          format-icons = [ "󰤟" "󰤢" "󰤥" "󰤨" ];
         };
 
         battery = {
