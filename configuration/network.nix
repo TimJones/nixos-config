@@ -4,6 +4,14 @@
   # Allow user to manage networks
   users.users.tim.extraGroups = [ "networkmanager" ];
 
+  # Save ad-hoc network configs
+  environment.persistence."/persist".directories = [ 
+    {
+      directory = "/etc/NetworkManager/system-connections";
+      mode = "u=rwx,g=,o=";
+    }
+  ];
+
   # Store PSKs in SOPS
   sops.secrets = {
     "wifi/home/psk" = {};
