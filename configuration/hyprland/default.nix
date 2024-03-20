@@ -1,4 +1,5 @@
-{ pkgs
+{ config
+, pkgs
 , ...
 }: {
   imports = [
@@ -8,7 +9,20 @@
   ];
 
   services.udisks2.enable = true;
-  environment.systemPackages = [ pkgs.udiskie ];
+  environment.systemPackages = [ 
+    pkgs.udiskie
+    pkgs.hyprpaper
+  ];
+
+  home-manager.users.tim.xdg = {
+    enable = true;
+    dataFile."wallpaper.png".source = ./nix-wallpaper-mosaic-blue.png;
+    configFile."hypr/hyprpaper.conf".text = ''
+      ipc = off
+      preload = ${config.home-manager.users.tim.xdg.dataHome}/wallpaper.png 
+      wallpaper = ,${config.home-manager.users.tim.xdg.dataHome}/wallpaper.png
+    '';
+  };
   
   programs.hyprland.enable = true;
   home-manager.users.tim.services.dunst.enable = true;
@@ -60,6 +74,7 @@
         "waybar"
         "udiskie --tray"
         "nmapplet --indicator"
+        "hyprpaper"
       ];
 
       bind = [
