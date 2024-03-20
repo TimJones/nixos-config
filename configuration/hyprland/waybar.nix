@@ -9,8 +9,8 @@
         margin-left = 10;
         margin-right = 10;
         modules-left = [ "cpu" "memory" "temperature" "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
-        modules-right = [ "tray" "backlight" "battery" "clock" "group/power" ];
+        modules-center = [ "clock#day" "clock#time" "clock#date" ];
+        modules-right = [ "tray" "backlight" "battery" "group/power" ];
 
         cpu = {
           interval = 5;
@@ -34,6 +34,18 @@
 
         temperature = {
           format = " {temperatureC}°C";
+        };
+
+        "clock#day" = {
+          format = "{:%A}";
+        };
+
+        "clock#time" = {
+          format = "{:%R}";
+        };
+
+        "clock#date" = {
+          format = "{:%F}";
         };
 
         backlight = {
@@ -118,7 +130,7 @@
       /* Reset all styles */
       * {
           border: none;
-          border-radius: 0;
+          border-radius: 20px;
           min-height: 0;
           margin: 1px;
           padding: 0;
@@ -128,10 +140,24 @@
       #waybar {
           background: transparent;
           color: @primary_blue;
-          background-color: @base;
           font-family: monospace;
           font-size: 16px;
           border-radius: 15px;
+      }
+
+      .modules-left {
+          margin: 2px 10px 0 0;
+          background-color: @base;
+      }
+
+      .modules-center {
+          margin: 2px 0 0 0;
+          background-color: @base;
+      }
+
+      .modules-right {
+          margin: 2px 0 0 10px;
+          background-color: @base;
       }
       
       /* Modules */
@@ -147,8 +173,7 @@
       #custom-lock,
       #custom-reboot,
       #custom-power {
-          padding:0.5rem 0.6rem;
-          margin: 1px 0px;
+          padding:0 10px;
       }
       
       #battery {
