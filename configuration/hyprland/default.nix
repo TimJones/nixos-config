@@ -58,6 +58,7 @@
       exec-once = [
         "dunst"
         "waybar"
+        "udiskie --tray"
         "nmapplet --indicator"
       ];
 
