@@ -9,7 +9,7 @@
   ];
 
   services.udisks2.enable = true;
-  environment.systemPackages = [ 
+  environment.systemPackages = [
     pkgs.udiskie
     pkgs.hyprpaper
   ];
@@ -23,7 +23,7 @@
       wallpaper = ,${config.home-manager.users.tim.xdg.dataHome}/wallpaper.png
     '';
   };
-  
+
   programs.hyprland.enable = true;
   home-manager.users.tim.services.dunst.enable = true;
   home-manager.users.tim.wayland.windowManager.hyprland = {

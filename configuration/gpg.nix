@@ -37,11 +37,11 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    pinentryFlavor = "tty";
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   environment.persistence."/persist".users.tim.directories = [
-    { 
+    {
       directory = ".gnupg";
       mode = "u=rwx,g=,o=";
     }

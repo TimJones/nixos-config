@@ -10,7 +10,7 @@
     autocd = true;
     enableCompletion = true;
     enableVteIntegration = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
 
     history.ignoreAllDups = true;
 

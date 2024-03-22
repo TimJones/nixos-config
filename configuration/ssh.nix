@@ -12,8 +12,8 @@
   };
 
   sops.secrets = {
-    "boxen/laptop-02/ssh/rsa" = {};
-    "boxen/laptop-02/ssh/ed25519" = {};
+    "boxen/laptop-02/ssh/rsa" = { };
+    "boxen/laptop-02/ssh/ed25519" = { };
   };
 
   environment.etc = {

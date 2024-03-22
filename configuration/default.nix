@@ -45,7 +45,7 @@
         value.source = value.flake;
       })
       config.nix.registry;
-  
+
   # Sound!
   services.pipewire = {
     enable = true;
@@ -53,7 +53,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  
+
   # Allow realtime priority to user processes
   security.rtkit.enable = true;
 

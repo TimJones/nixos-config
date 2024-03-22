@@ -5,7 +5,7 @@
   users.users.tim.extraGroups = [ "networkmanager" ];
 
   # Save ad-hoc network configs
-  environment.persistence."/persist".directories = [ 
+  environment.persistence."/persist".directories = [
     {
       directory = "/etc/NetworkManager/system-connections";
       mode = "u=rwx,g=,o=";
@@ -14,9 +14,9 @@
 
   # Store PSKs in SOPS
   sops.secrets = {
-    "wifi/home/psk" = {};
-    "wifi/mum/psk" = {};
-    "wifi/jiloca/psk" = {};
+    "wifi/home/psk" = { };
+    "wifi/mum/psk" = { };
+    "wifi/jiloca/psk" = { };
   };
   # And create files that can be used with envsubst
   sops.templates."wifi-psk.env".content = ''
