@@ -10,7 +10,7 @@
         margin-right = 10;
         modules-left = [ "cpu" "memory" "temperature" "hyprland/workspaces" ];
         modules-center = [ "clock#day" "clock#time" "clock#date" ];
-        modules-right = [ "tray" "backlight" "battery" "group/power" ];
+        modules-right = [ "tray" "wireplumber" "backlight" "battery" "group/power" ];
 
         cpu = {
           interval = 5;
@@ -46,6 +46,12 @@
 
         "clock#date" = {
           format = "{:%F}";
+        };
+
+        wireplumber = {
+          format = "{volume}% {icon}";
+          format-icons = [ "" "" "" ];
+          format-muted = "";
         };
 
         backlight = {
@@ -161,6 +167,7 @@
       }
       
       /* Modules */
+      #wireplumber,
       #battery,
       #clock,
       #backlight,
