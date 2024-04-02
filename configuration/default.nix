@@ -13,7 +13,7 @@
     ./fonts.nix
     ./shell.nix
     ./git.nix
-    ./neovim.nix
+    ./neovim
     ./gpg.nix
     ./password-store.nix
     ./hyprland
