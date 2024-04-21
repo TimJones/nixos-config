@@ -18,6 +18,7 @@
     ./password-store.nix
     ./hyprland
     ./firefox.nix
+    ./gaming.nix
   ];
 
   # General system config
