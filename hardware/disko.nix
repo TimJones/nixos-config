@@ -47,12 +47,13 @@
             postCreateHook = ''
                             (
                               btrfs_mnt=$(mktemp -d)
-                              mount /dev/disk/by-partlabel/disk-main-OS "$btrfs_mnt" -o subvol=/
-                              trap "umount $btrfs_mnt; rm -rf $btrfs_mnt" EXIT
+                              mount /dev/disk/by-partlabel/disk-main-OS "''${btrfs_mnt}" -o subvol=/
+                              trap "umount ''${btrfs_mnt}; rm -rf ''${btrfs_mnt}" EXIT
 
-                              mkdir -p "$btrfs_mnt"/persistence/snapshots/{root,home} 
-                              btrfs subvolume snapshot -r "$btrfs_mnt/root" "$btrfs_mnt/persistence/snapshots/root/new"
-                              btrfs subvolume snapshot -r "$btrfs_mnt/home" "$btrfs_mnt/persistence/snapshots/home/new"
+                              for vol in root home; do
+                                mkdir -p "''${btrfs_mnt}/persistence/snapshots/''${vol}" 
+                                btrfs subvolume snapshot -r "''${btrfs_mnt}/''${vol}" "''${btrfs_mnt}/persistence/snapshots/''${vol}/new"
+                              done
                             )
               	    '';
           };
