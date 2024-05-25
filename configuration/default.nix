@@ -16,6 +16,7 @@
     ./neovim
     ./gpg.nix
     ./password-store.nix
+    ./regreet
     ./hyprland
     ./firefox.nix
     ./gaming.nix
