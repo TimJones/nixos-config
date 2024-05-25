@@ -32,10 +32,6 @@
           };
         };
 
-        temperature = {
-          format = " {temperatureC}°C";
-        };
-
         "clock#day" = {
           format = "{:%A}";
         };
@@ -51,7 +47,7 @@
         wireplumber = {
           format = "{volume}% {icon}";
           format-icons = [ "" "" "" ];
-          format-muted = "";
+          format-muted = "{volume}% ";
         };
 
         backlight = {
@@ -268,6 +264,10 @@
       
       #battery.icon {
           font-size: 26px;
+      }
+
+      #wireplumber.muted {
+          color: #1b4764;
       }
     '';
   };

@@ -9,9 +9,12 @@
   ];
 
   services.udisks2.enable = true;
-  environment.systemPackages = [
-    pkgs.udiskie
-    pkgs.hyprpaper
+  environment.systemPackages = with pkgs; [
+    wluma          # Auto screen brightness
+    udiskie        # Disk mount helper
+    hyprpaper      # Wallpaper
+    playerctl      # MPRIS client
+    brightnessctl  # Manual screen brightness
   ];
 
   home-manager.users.tim.xdg = {
@@ -71,6 +74,7 @@
 
       exec-once = [
         "dunst"
+        "wluma"
         "waybar"
         "udiskie --tray"
         "nmapplet --indicator"
@@ -86,6 +90,12 @@
         # App launchers
         "$mod, return, exec, kitty"
         "$mod, R, exec, wofi --show drun"
+
+        # Media keys
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioNext, exec, playerctl next"
 
         # Move window focus
         "$mod, left, movefocus, l"
@@ -123,6 +133,14 @@
         "$mod SHIFT, 8, movetoworkspace, 8"
         "$mod SHIFT, 9, movetoworkspace, 9"
         "$mod SHIFT, 0, movetoworkspace, 10"
+      ];
+
+      # Repeating commands
+      binde = [
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+        ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
       ];
 
       bindm = [
