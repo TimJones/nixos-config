@@ -47,7 +47,7 @@
         modules = [
           nixos-hardware.nixosModules.framework-13-7040-amd
           disko.nixosModules.disko
-          inputs.impermanence.nixosModules.impermanence
+          impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops
           ./hardware
           ./configuration
