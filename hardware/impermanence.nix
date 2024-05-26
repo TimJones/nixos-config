@@ -22,6 +22,7 @@
         if [[ -e "''${btrfs_mnt}/''${vol}" ]] && [[ -e "''${btrfs_mnt}/persistence/snapshots/''${vol}/new" ]]; then
             timestamp=$(date --date="@$(stat -c %Y ''${btrfs_mnt}/''${vol})" "+%Y-%m-%-d_%H:%M:%S")
             mv "''${btrfs_mnt}/''${vol}" "''${btrfs_mnt}/persistence/snapshots/''${vol}/''${timestamp}"
+            btrfs property set "''${btrfs_mnt}/persistence/snapshots/''${vol}/''${timestamp}" ro true
         fi
 
         btrfs subvolume snapshot "''${btrfs_mnt}/persistence/snapshots/''${vol}/new" "''${btrfs_mnt}/''${vol}"
