@@ -14,6 +14,7 @@
   };
 
   environment.persistence."/persist".users.tim.directories = [
+    ".local/share/Steam"
     ".steam"
     ".factorio"
   ];
