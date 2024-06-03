@@ -49,6 +49,7 @@
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops
+          nixvim.nixosModules.nixvim
           ./hardware
           ./configuration
         ];

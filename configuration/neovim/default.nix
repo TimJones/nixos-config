@@ -2,256 +2,249 @@
 , pkgs
 , ...
 }: {
-  home-manager.users.tim = {
-    imports = [
-      inputs.nixvim.homeManagerModules.nixvim
-    ];
+  programs.nixvim = {
+    enable = true;
+    defaultEditor = true;
 
-    programs.nixvim = {
-      enable = true;
-      defaultEditor = true;
+    colorschemes.tokyonight.enable = true;
 
-      colorschemes.tokyonight.enable = true;
+    clipboard = {
+      register = "unnamedplus";
+      providers.wl-copy.enable = true;
+    };
 
-      clipboard = {
-        register = "unnamedplus";
-        providers.wl-copy.enable = true;
-      };
+    # Settings based on kickstart.nvim
+    #  ref - https://github.com/nvim-lua/kickstart.nvim
+    #  globals = vim.g.*
+    #  options = vim.opt.*
 
-      # Settings based on kickstart.nvim
-      #  ref - https://github.com/nvim-lua/kickstart.nvim
-      #  globals = vim.g.*
-      #  options = vim.opt.*
-
+    globals = {
       # Set <space> as the leader key
-      globals.mapleader = " ";
-      globals.maplocalleader = " ";
+      mapleader = " ";
+      maplocalleader = " ";
 
       # Using a nerd font
-      globals.have_nerd_font = true;
+      have_nerd_font = true;
+    };
 
+    opts = {
       # Make line numbers default
-      options.number = true;
-      options.relativenumber = true;
+      number = true;
+      relativenumber = true;
 
       # Enable mouse mode
-      options.mouse = "a";
+      mouse = "a";
 
       # Don't show the mode, since it's already in the status line
-      options.showmode = false;
+      showmode = false;
 
       # Enable break indent
-      options.breakindent = true;
+      breakindent = true;
 
       # Save undo history
-      options.undofile = true;
+      undofile = true;
 
       # Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-      options.ignorecase = true;
-      options.smartcase = true;
+      ignorecase = true;
+      smartcase = true;
 
       # Keep signcolumn on by default
-      options.signcolumn = "yes";
+      signcolumn = "yes";
 
       # Decrease update time
-      options.updatetime = 250;
+      updatetime = 250;
 
       # Decrease mapped sequence wait time
       # Displays which-key popup sooner
-      options.timeoutlen = 300;
+      timeoutlen = 300;
 
       # Configure how new splits should be opened
-      options.splitright = true;
-      options.splitbelow = true;
+      splitright = true;
+      splitbelow = true;
 
       # Sets how Neovim will display certain whitespace characters in the editor
-      options.list = true;
-      options.listchars = {
+      list = true;
+      listchars = {
         tab = "» ";
         trail = "·";
         nbsp = "␣";
       };
 
       # Preview substitutions live, as you type!
-      options.inccommand = "split";
+      inccommand = "split";
 
       # Show which line your cursor is on
-      options.cursorline = true;
+      cursorline = true;
 
       # Minimal number of screen lines to keep above and below the cursor
-      options.scrolloff = 10;
+      scrolloff = 10;
+    };
 
-      keymaps = [
-        # Diagnostic keymaps
-        {
-          mode = "n";
-          key = "[d";
-          action = "vim.diagnostic.goto_prev";
-          lua = true;
-          options.desc = "Go to previous [D]iagnostic message";
-        }
-        {
-          mode = "n";
-          key = "]d";
-          action = "vim.diagnostic.goto_next";
-          lua = true;
-          options.desc = "Go to next [D]iagnostic message";
-        }
-        {
-          mode = "n";
-          key = "<leader>e";
-          action = "vim.diagnostic.open_float";
-          lua = true;
-          options.desc = "Show diagnostic [E]rror messages";
-        }
-        {
-          mode = "n";
-          key = "<leader>q";
-          action = "vim.diagnostic.setloclist";
-          lua = true;
-          options.desc = "Open diagnostic [Q]uickfix list";
-        }
+    keymaps = [
+      # Diagnostic keymaps
+      {
+        mode = "n";
+        key = "[d";
+        action.__raw = "vim.diagnostic.goto_prev";
+        options.desc = "Go to previous [D]iagnostic message";
+      }
+      {
+        mode = "n";
+        key = "]d";
+        action.__raw = "vim.diagnostic.goto_next";
+        options.desc = "Go to next [D]iagnostic message";
+      }
+      {
+        mode = "n";
+        key = "<leader>e";
+        action.__raw = "vim.diagnostic.open_float";
+        options.desc = "Show diagnostic [E]rror messages";
+      }
+      {
+        mode = "n";
+        key = "<leader>q";
+        action.__raw = "vim.diagnostic.setloclist";
+        options.desc = "Open diagnostic [Q]uickfix list";
+      }
 
-        # Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
-        # for people to discover.
-        # NOTE: This won't work in all terminal emulators/tmux/etc. May still need to use
-        # <C-/><C-n> to exit terminal mode.
-        {
-          mode = "t";
-          key = "<Esc><Esc>";
-          action = "<C-\\><C-n>";
-          options.desc = "Exit terminal node";
-        }
+      # Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
+      # for people to discover.
+      # NOTE: This won't work in all terminal emulators/tmux/etc. May still need to use
+      # <C-/><C-n> to exit terminal mode.
+      {
+        mode = "t";
+        key = "<Esc><Esc>";
+        action = "<C-\\><C-n>";
+        options.desc = "Exit terminal node";
+      }
 
-        # Use Ctrl+<hjkl> to switch between windows
-        {
-          mode = "n";
-          key = "<C-h>";
-          action = "<C-w><C-h>";
-          options.desc = "Move focus to the left window";
-        }
-        {
-          mode = "n";
-          key = "<C-l>";
-          action = "<C-w><C-l>";
-          options.desc = "Move focus to the right window";
-        }
-        {
-          mode = "n";
-          key = "<C-j>";
-          action = "<C-w><C-j>";
-          options.desc = "Move focus to the lower window";
-        }
-        {
-          mode = "n";
-          key = "<C-k>";
-          action = "<C-w><C-k>";
-          options.desc = "Move focus to the upper window";
-        }
+      # Use Ctrl+<hjkl> to switch between windows
+      {
+        mode = "n";
+        key = "<C-h>";
+        action = "<C-w><C-h>";
+        options.desc = "Move focus to the left window";
+      }
+      {
+        mode = "n";
+        key = "<C-l>";
+        action = "<C-w><C-l>";
+        options.desc = "Move focus to the right window";
+      }
+      {
+        mode = "n";
+        key = "<C-j>";
+        action = "<C-w><C-j>";
+        options.desc = "Move focus to the lower window";
+      }
+      {
+        mode = "n";
+        key = "<C-k>";
+        action = "<C-w><C-k>";
+        options.desc = "Move focus to the upper window";
+      }
 
-        # Plugin keymaps
+      # Plugin keymaps
+      {
+        mode = "";
+        key = "<leader>f";
+        action.__raw = "function() require('conform').format { async = true, lsp_fallback = true } end";
+        options.desc = "[F]ormat buffer";
+      }
+    ];
+
+    autoGroups = {
+      kickstart-highlight-yank = {
+        clear = true;
+      };
+    };
+    autoCmd = [
+      # Highlight when yanking text
+      {
+        event = "TextYankPost";
+        desc = "Highlight when yanking text";
+        group = "kickstart-highlight-yank";
+        callback = { __raw = "function() vim.highlight.on_yank() end"; };
+      }
+    ];
+
+    plugins.conform-nvim = {
+      formattersByFt = {
+        lua = [ "stylua" ];
+      };
+      formatOnSave = ''
+        function(bufnr)
+          local disable_filetypes = { c = true, cpp = true }
+          return {
+            timeout_ms = 500,
+            lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+          }
+        end
+      '';
+    };
+
+    plugins.lazy = {
+      enable = true;
+      plugins = with pkgs.vimPlugins; [
+        vim-sleuth
+        comment-nvim
         {
-          mode = "";
-          key = "<leader>f";
-          action = "function() require('conform').format { async = true, lsp_fallback = true } end";
-          lua  = true;
-          options.desc = "[F]ormat buffer";
+          pkg = gitsigns-nvim;
+          opts = {
+            signs = {
+              add = { text = "+"; };
+              change = { text = "~"; };
+              delete = { text = "_"; };
+              topdelete = { text = "‾"; };
+              changedelete = { text = "~"; };
+            };
+          };
+        }
+        {
+          pkg = which-key-nvim;
+          event = "VimEnter";
+          config = builtins.readFile config/which-key.lua;
+        }
+        {
+          pkg = telescope-nvim;
+          dependencies = [
+            plenary-nvim
+            telescope-fzf-native-nvim
+            telescope-ui-select-nvim
+            nvim-web-devicons
+          ];
+          config = builtins.readFile config/telescope.lua;
+        }
+        {
+          pkg = nvim-lspconfig;
+          dependencies = [
+            fidget-nvim
+            neodev-nvim
+          ];
+          config = builtins.readFile config/lspconfig.lua;
+        }
+        {
+          pkg = nvim-cmp;
+          event = "InsertEnter";
+          dependencies = [
+            luasnip
+            cmp_luasnip
+            cmp-nvim-lsp
+            cmp-path
+          ];
+          config = builtins.readFile config/nvim-cmp.lua;
+        }
+        {
+          pkg = todo-comments-nvim;
+          event = "VimEnter";
+          dependencies = [
+            plenary-nvim
+          ];
+          opts = {
+            signs = false;
+          };
         }
       ];
-
-      autoGroups = {
-        kickstart-highlight-yank = {
-          clear = true;
-        };
-      };
-      autoCmd = [
-        # Highlight when yanking text
-        {
-          event = "TextYankPost";
-          desc = "Highlight when yanking text";
-          group = "kickstart-highlight-yank";
-          callback = { __raw = "function() vim.highlight.on_yank() end"; };
-        }
-      ];
-
-      plugins.conform-nvim = {
-        formattersByFt = {
-          lua = [ "stylua" ];
-        };
-        formatOnSave = ''
-          function(bufnr)
-            local disable_filetypes = { c = true, cpp = true }
-            return {
-              timeout_ms = 500,
-              lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-            }
-          end
-        '';
-      };
-
-      plugins.lazy = {
-        enable = true;
-        plugins = with pkgs.vimPlugins; [
-          vim-sleuth
-          comment-nvim
-          {
-            pkg = gitsigns-nvim;
-            opts = {
-              signs = {
-                add = { text = "+"; };
-                change = { text = "~"; };
-                delete = { text = "_"; };
-                topdelete = { text = "‾"; };
-                changedelete = { text = "~"; };
-              };
-            };
-          }
-          {
-            pkg = which-key-nvim;
-            event = "VimEnter";
-            config = builtins.readFile config/which-key.lua;
-          }
-          {
-            pkg = telescope-nvim;
-            dependencies = [
-              plenary-nvim
-              telescope-fzf-native-nvim
-              telescope-ui-select-nvim
-              nvim-web-devicons
-            ];
-            config = builtins.readFile config/telescope.lua;
-          }
-          {
-            pkg = nvim-lspconfig;
-            dependencies = [
-              fidget-nvim
-              neodev-nvim
-            ];
-            config = builtins.readFile config/lspconfig.lua;
-          }
-          {
-            pkg = nvim-cmp;
-            event = "InsertEnter";
-            dependencies = [
-              luasnip
-              cmp_luasnip
-              cmp-nvim-lsp
-              cmp-path
-            ];
-            config = builtins.readFile config/nvim-cmp.lua;
-          }
-          {
-            pkg = todo-comments-nvim;
-            event = "VimEnter";
-            dependencies = [
-              plenary-nvim
-            ];
-            opts = {
-              signs = false;
-            };
-          }
-        ];
-      };
     };
   };
 }
