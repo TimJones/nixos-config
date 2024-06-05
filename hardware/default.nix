@@ -13,7 +13,10 @@
     enableRedistributableFirmware = true;
   };
 
-  services.hardware.bolt.enable = true;
+  services = {
+    fwupd.enable = true;
+    hardware.bolt.enable = true;
+  };
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
@@ -29,4 +32,3 @@
     };
   };
 }
-

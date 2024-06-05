@@ -20,6 +20,7 @@
     ./hyprland
     ./firefox.nix
     ./gaming.nix
+    ./fingerprint.nix
   ];
 
   # General system config
