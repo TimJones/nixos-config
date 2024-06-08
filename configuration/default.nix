@@ -21,6 +21,7 @@
     ./firefox.nix
     ./gaming.nix
     ./fingerprint.nix
+    ./bluetooth.nix
   ];
 
   # General system config

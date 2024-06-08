@@ -79,6 +79,7 @@
         "udiskie --tray"
         "nmapplet --indicator"
         "hyprpaper"
+        "blueman-applet"
       ];
 
       bind = [
