@@ -6,7 +6,10 @@
     enable = true;
     defaultEditor = true;
 
-    colorschemes.tokyonight.enable = true;
+    colorschemes.catppuccin = {
+      enable = true;
+      settings.flavour = "mocha";
+    };
 
     clipboard = {
       register = "unnamedplus";

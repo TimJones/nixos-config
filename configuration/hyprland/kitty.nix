@@ -2,7 +2,7 @@
   home-manager.users.tim.programs.kitty = {
     enable = true;
 
-    theme = "Tokyo Night Storm";
+    theme = "Catppuccin-Mocha";
 
     shellIntegration = {
       enableBashIntegration = true;
