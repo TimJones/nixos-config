@@ -23,6 +23,7 @@
     ./fingerprint.nix
     ./bluetooth.nix
     ./slack.nix
+    ./wayland.nix
   ];
 
   # General system config
