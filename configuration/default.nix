@@ -22,6 +22,7 @@
     ./gaming.nix
     ./fingerprint.nix
     ./bluetooth.nix
+    ./slack.nix
   ];
 
   # General system config
