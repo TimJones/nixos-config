@@ -42,9 +42,16 @@
 
       # General config
       gestures.workspace_swipe = true;
-      general.border_size = 2;
       decoration.rounding = 10;
       misc.force_default_wallpaper = 0;
+      general = {
+        border_size = 2;
+        layout = "master";
+      };
+
+      master = {
+        orientation = "center";
+      };
 
       env = [
         "XCURSOR_SIZE,24"
@@ -53,11 +60,6 @@
       input = {
         follow_mouse = 1;
         touchpad.natural_scroll = true;
-      };
-
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
       };
 
       animations = {
