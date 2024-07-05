@@ -24,6 +24,7 @@
     ./bluetooth.nix
     ./slack.nix
     ./wayland.nix
+    ./k8s.nix
   ];
 
   # General system config

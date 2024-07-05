@@ -1,0 +1,18 @@
+{ pkgs
+, ...
+}: {
+  environment.systemPackages = with pkgs; [
+    kubectl
+    talosctl
+    omnictl
+    krew
+    kubelogin-oidc
+  ];
+
+  environment.persistence."/persist".users.tim.directories = [
+    ".kube"
+    ".talos"
+    ".config/omni"
+    ".local/share/omni"
+  ];
+}
