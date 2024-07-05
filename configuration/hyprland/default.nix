@@ -6,6 +6,7 @@
     ./waybar.nix
     ./wofi.nix
     ./kitty.nix
+    ./kanshi.nix
   ];
 
   services.udisks2.enable = true;
