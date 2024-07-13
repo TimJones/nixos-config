@@ -34,6 +34,16 @@
         config.sops.templates."wifi-psk.env".path
       ];
       profiles = {
+        home-dock = {
+          connection = {
+            id = "Docked";
+            type = "ethernet";
+            autoconnect = true;
+            autoconnect-priority = 100;
+          };
+          ipv4.method = "auto";
+          ipv6.method = "disabled";
+        };
         home-wifi = {
           connection = {
             id = "LlamasJones";
@@ -47,12 +57,8 @@
             key-mgmt = "wpa-psk";
             psk = "$HOME_PSK";
           };
-          ipv4 = {
-            method = "auto";
-          };
-          ipv6 = {
-            method = "disabled";
-          };
+          ipv4.method = "auto";
+          ipv6.method = "disabled";
         };
         mum-wifi = {
           connection = {
@@ -67,12 +73,8 @@
             key-mgmt = "wpa-psk";
             psk = "$MUM_PSK";
           };
-          ipv4 = {
-            method = "auto";
-          };
-          ipv6 = {
-            method = "disabled";
-          };
+          ipv4.method = "auto";
+          ipv6.method = "disabled";
         };
         jiloca-wifi = {
           connection = {
@@ -87,12 +89,8 @@
             key-mgmt = "wpa-psk";
             psk = "$JILOCA_PSK";
           };
-          ipv4 = {
-            method = "auto";
-          };
-          ipv6 = {
-            method = "disabled";
-          };
+          ipv4.method = "auto";
+          ipv6.method = "disabled";
         };
       };
     };
