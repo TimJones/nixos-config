@@ -25,6 +25,7 @@
     ./slack.nix
     ./wayland.nix
     ./k8s.nix
+    ./docker.nix
   ];
 
   # General system config
