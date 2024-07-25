@@ -31,7 +31,7 @@
 
   # General system config
   networking.hostName = "laptop-02";
-  time.timeZone = "Europe/Madrid";
+  services.automatic-timezoned.enable = true;
 
   # Nix-specific settings
   nix = {
