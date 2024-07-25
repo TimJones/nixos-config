@@ -26,6 +26,7 @@
     ./wayland.nix
     ./k8s.nix
     ./docker.nix
+    ./cloud.nix
   ];
 
   # General system config
