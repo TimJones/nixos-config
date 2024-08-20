@@ -1,8 +1,10 @@
 # Keep this file minimal as it is included in the installer ISO
-{
+{ mainDisk
+, ...
+}: {
   disko.devices.disk.main = {
     type = "disk";
-    device = "/dev/disk/by-id/nvme-WD_BLACK_SN850X_4000GB_23270P802370";
+    device = mainDisk;
     content = {
       type = "gpt";
       partitions = {

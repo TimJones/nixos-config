@@ -1,6 +1,10 @@
 { config
 , ...
-}: {
+}:
+let
+  hostName = config.networking.hostName;
+in
+{
   services.openssh = {
     enable = true;
     startWhenNeeded = true;
@@ -12,17 +16,17 @@
   };
 
   sops.secrets = {
-    "boxen/laptop-02/ssh/rsa" = { };
-    "boxen/laptop-02/ssh/ed25519" = { };
+    "boxen/${hostName}/ssh/rsa" = { };
+    "boxen/${hostName}/ssh/ed25519" = { };
   };
 
   environment.etc = {
     "ssh/ssh_host_rsa_key" = {
-      source = config.sops.secrets."boxen/laptop-02/ssh/rsa".path;
+      source = config.sops.secrets."boxen/${hostName}/ssh/rsa".path;
       mode = "0400";
     };
     "ssh/ssh_host_ed25519_key" = {
-      source = config.sops.secrets."boxen/laptop-02/ssh/ed25519".path;
+      source = config.sops.secrets."boxen/${hostName}/ssh/ed25519".path;
       mode = "0400";
     };
   };

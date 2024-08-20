@@ -4,6 +4,7 @@ keys:
   - &tim age14y022wl4kddtsl6r54s8r3s6j75qc4e4tshhxw6sugy06qlvwa7sgrjfqs
   # Host keys
   - &laptop-02 age136xxlufx2lvp5tvc8d7mx7y2qhq4vh4k973xdc9tcs2wtv592q6qeh0gag
+  - &desktop-02 age19zej0lsu5w6xqyey53mnc3r3cxvvdwckzezfc42vu8mplraf4y2shq90hl
 creation_rules:
   - path_regex: configuration/secrets.yaml
     key_groups:
@@ -12,3 +13,4 @@ creation_rules:
         age:
           - *tim
           - *laptop-02
+          - *desktop-02

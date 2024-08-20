@@ -42,17 +42,41 @@
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
-      nixosConfigurations.laptop-02 = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs outputs; };
-        modules = [
-          nixos-hardware.nixosModules.framework-13-7040-amd
-          disko.nixosModules.disko
-          impermanence.nixosModules.impermanence
-          sops-nix.nixosModules.sops
-          nixvim.nixosModules.nixvim
-          ./hardware
-          ./configuration
-        ];
+      nixosConfigurations = {
+        laptop-02 = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+            mainDisk = "/dev/disk/by-id/nvme-WD_BLACK_SN850X_4000GB_23270P802370";
+            hostName = "laptop-02";
+          };
+          modules = [
+            nixos-hardware.nixosModules.framework-13-7040-amd
+            disko.nixosModules.disko
+            impermanence.nixosModules.impermanence
+            sops-nix.nixosModules.sops
+            nixvim.nixosModules.nixvim
+            ./hardware
+            ./configuration
+          ];
+        };
+
+        desktop-02 = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+            mainDisk = "/dev/disk/by-id/nvme-WD_BLACK_SN850X_4000GB_23513M801557";
+            hostName = "desktop-02";
+          };
+          modules = [
+            nixos-hardware.nixosModules.common-cpu-amd
+            nixos-hardware.nixosModules.common-gpu-amd
+            disko.nixosModules.disko
+            impermanence.nixosModules.impermanence
+            sops-nix.nixosModules.sops
+            nixvim.nixosModules.nixvim
+            ./hardware
+            ./configuration
+          ];
+        };
       };
 
       packages.x86_64-linux.iso-laptop-02 = nixos-generators.nixosGenerate {

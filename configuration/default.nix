@@ -29,10 +29,6 @@
     ./cloud.nix
   ];
 
-  # General system config
-  networking.hostName = "laptop-02";
-  services.automatic-timezoned.enable = true;
-
   # Nix-specific settings
   nix = {
     settings = {

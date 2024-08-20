@@ -4,12 +4,8 @@ help: ## Prints help for targets with comments
 
 .PHONY: build
 build-%: ## Builds the NixOS system for a given box
-	sudo -E nixos-rebuild switch --flake .#$*
+	nixos-rebuild switch --use-remote-sudo --flake .#$*
 
 .PHONY: rehome
 rehome-%: ## Uses home-manager to reconfigure the home env
 	home-manager switch --flake .#$*
-
-.PHONY: iso
-iso-%:  ## Builds a minimal installer ISO for a given box
-	nix build .#iso-$*
