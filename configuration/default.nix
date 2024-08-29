@@ -11,7 +11,7 @@
     ./home-manager.nix
     ./users.nix
     ./fonts.nix
-    ./shell.nix
+    ./shell
     ./git.nix
     ./neovim
     ./gpg.nix
