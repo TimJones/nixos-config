@@ -3,8 +3,11 @@
 }: {
   fonts = {
     fontDir.enable = true;
-    packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Meslo" "CascadiaCode" "DroidSansMono" "Hack" ]; })
+    packages = with pkgs.nerd-fonts; [
+      meslo-lg
+      caskaydia-mono
+      droid-sans-mono
+      hack
     ];
 
     fontconfig.defaultFonts = {
