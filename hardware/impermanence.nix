@@ -28,6 +28,7 @@
         btrfs subvolume snapshot "''${btrfs_mnt}/persistence/snapshots/''${vol}/new" "''${btrfs_mnt}/''${vol}"
 
         for snap in $(find "''${btrfs_mnt}/persistence/snapshots/''${vol}/" -maxdepth 1 -mtime +30 -not -name new); do
+          btrfs property set "''${snap}" ro false
           delete_subvolume_recursively "''${snap}"
         done
       done
