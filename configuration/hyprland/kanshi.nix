@@ -35,6 +35,22 @@
           ];
         };
       }
+      {
+        profile = {
+          name = "homeDesktop";
+          outputs = [
+            {
+              criteria = "LG Electronics LG ULTRAGEAR 102NTVS35511";
+              adaptiveSync = true;
+              position = "0,0";
+            }
+            {
+              criteria = "Dell Inc. DELL U2713HM 7JNY5431996S";
+              position = "440,-1440";
+            }
+          ];
+        };
+      }
     ];
   };
 }
