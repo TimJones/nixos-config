@@ -49,9 +49,7 @@
         layout = "master";
       };
 
-      master = {
-        orientation = "center";
-      };
+      master = {};
 
       env = [
         "XCURSOR_SIZE,24"
