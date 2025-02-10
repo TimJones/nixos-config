@@ -6,6 +6,10 @@ help: ## Prints help for targets with comments
 build-%: ## Builds the NixOS system for a given box
 	nixos-rebuild switch --use-remote-sudo --flake .#$*
 
+.PHONY: check
+check-%: ## Runs the build system without activating it
+	nixos-rebuild dry-activate --use-remote-sudo --flake .#$*
+
 .PHONY: rehome
 rehome-%: ## Uses home-manager to reconfigure the home env
 	home-manager switch --flake .#$*
