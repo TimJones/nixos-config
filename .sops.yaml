@@ -14,3 +14,6 @@ creation_rules:
           - *tim
           - *laptop-02
           - *desktop-02
+stores:
+  yaml:
+    indent: 2
