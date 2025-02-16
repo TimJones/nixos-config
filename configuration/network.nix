@@ -62,7 +62,7 @@
         };
         mum-wifi = {
           connection = {
-            id = "VM8335228";
+            id = "VM6784418";
             type = "wifi";
           };
           wifi = {
