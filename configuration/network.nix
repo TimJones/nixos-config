@@ -67,13 +67,16 @@
           };
           wifi = {
             mode = "infrastructure";
-            ssid = "VM8335228";
+            ssid = "VM6784418";
           };
           wifi-security = {
             key-mgmt = "wpa-psk";
             psk = "$MUM_PSK";
           };
-          ipv4.method = "auto";
+          ipv4 = {
+            method = "auto";
+            dns = "1.1.1.1;8.8.8.8;";
+          };
           ipv6.method = "disabled";
         };
         jiloca-wifi = {
