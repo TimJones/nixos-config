@@ -12,6 +12,6 @@
 
   # For saving previous user/sessions
   environment.persistence."/persist".files = [
-    "/var/cache/regreet/cache.toml"
+    "/var/lib/regreet/state.toml"
   ];
 }
