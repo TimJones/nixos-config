@@ -2,6 +2,17 @@
 , pkgs
 , ...
 }: {
+  imports = [
+    ./plugins/conform.nix
+    ./plugins/gitsigns.nix
+    ./plugins/lsp.nix
+    ./plugins/mini.nix
+    ./plugins/nvim-cmp.nix
+    ./plugins/telescope.nix
+    ./plugins/treesitter.nix
+    ./plugins/which-key.nix
+  ];
+
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
@@ -15,11 +26,6 @@
       register = "unnamedplus";
       providers.wl-copy.enable = true;
     };
-
-    # Settings based on kickstart.nvim
-    #  ref - https://github.com/nvim-lua/kickstart.nvim
-    #  globals = vim.g.*
-    #  options = vim.opt.*
 
     globals = {
       # Set <space> as the leader key
@@ -81,33 +87,17 @@
 
       # Minimal number of screen lines to keep above and below the cursor
       scrolloff = 10;
+
+      # Highligh all search terms
+      hlsearch = true;
     };
 
     keymaps = [
-      # Diagnostic keymaps
+      # Clear highlights on search when pressing <Esc> in normal mode
       {
         mode = "n";
-        key = "[d";
-        action.__raw = "vim.diagnostic.goto_prev";
-        options.desc = "Go to previous [D]iagnostic message";
-      }
-      {
-        mode = "n";
-        key = "]d";
-        action.__raw = "vim.diagnostic.goto_next";
-        options.desc = "Go to next [D]iagnostic message";
-      }
-      {
-        mode = "n";
-        key = "<leader>e";
-        action.__raw = "vim.diagnostic.open_float";
-        options.desc = "Show diagnostic [E]rror messages";
-      }
-      {
-        mode = "n";
-        key = "<leader>q";
-        action.__raw = "vim.diagnostic.setloclist";
-        options.desc = "Open diagnostic [Q]uickfix list";
+        key = "<Esc>";
+        action = "<cmd>nohlsearch<CR>";
       }
 
       # Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -171,171 +161,39 @@
       }
     ];
 
-    plugins.conform-nvim = {
-      settings = {
-        formatters_by_ft = {
-          lua = [ "stylua" ];
+    plugins = {
+      # Adds icons for plugins to utilize in ui
+      web-devicons.enable = true;
+
+      # Detect tabstop and shiftwidth automatically
+      sleuth = {
+        enable = true;
+      };
+
+      # Highlight todo, notes, etc in comments
+      todo-comments = {
+        settings = {
+          enable = true;
+          signs = true;
         };
-        format_on_save = ''
-          function(bufnr)
-            local disable_filetypes = { c = true, cpp = true }
-            return {
-              timeout_ms = 500,
-              lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-            }
-          end
-        '';
       };
     };
 
-    plugins.lazy = {
-      enable = true;
-      plugins = with pkgs.vimPlugins; [
-        vim-sleuth
-        comment-nvim
-        {
-          pkg = gitsigns-nvim;
-          opts = {
-            signs = {
-              add = { text = "+"; };
-              change = { text = "~"; };
-              delete = { text = "_"; };
-              topdelete = { text = "‾"; };
-              changedelete = { text = "~"; };
-            };
-          };
-        }
-        {
-          pkg = which-key-nvim;
-          event = "VimEnter";
-          config = builtins.readFile config/which-key.lua;
-        }
-        {
-          pkg = telescope-nvim;
-          dependencies = [
-            plenary-nvim
-            telescope-fzf-native-nvim
-            telescope-ui-select-nvim
-            nvim-web-devicons
-          ];
-          config = builtins.readFile config/telescope.lua;
-        }
-        {
-          pkg = nvim-lspconfig;
-          dependencies = [
-            fidget-nvim
-            neodev-nvim
-          ];
-          config = builtins.readFile config/lspconfig.lua;
-        }
-        {
-          pkg = nvim-cmp;
-          event = "InsertEnter";
-          dependencies = [
-            luasnip
-            cmp_luasnip
-            cmp-nvim-lsp
-            cmp-path
-          ];
-          config = builtins.readFile config/nvim-cmp.lua;
-        }
-        {
-          pkg = todo-comments-nvim;
-          event = "VimEnter";
-          dependencies = [
-            plenary-nvim
-          ];
-          opts = {
-            signs = false;
-          };
-        }
-      ];
-    };
+    # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extraplugins#extraplugins
+    extraPlugins = with pkgs.vimPlugins; [
+      # Useful for getting pretty icons, requires a Nerd Font.
+      nvim-web-devicons
+    ];
+
+    extraConfigLuaPre = ''
+      if vim.g.have_nerd_font then
+        require('nvim-web-devicons').setup {}
+      end
+    '';
+
+    # Set the default modeline
+    extraConfigLuaPost = ''
+      -- vim: ts=2 sts=2 sw=2 et
+    '';
   };
 }
-#     xdg = {
-#       enable = true;
-#       configFile."nvim" = {
-#         source = ./config;
-#         recursive = true;
-#       };
-#     };
-#
-#     programs.neovim = {
-#       enable = true;
-#       defaultEditor = true;
-#
-#       viAlias = true;
-#       vimAlias = true;
-#       vimdiffAlias = true;
-#
-#       extraPackages = with pkgs; [
-#         lua-language-server
-#         ripgrep
-#         stylua
-#       ];
-#
-#       plugins = with pkgs.vimPlugins; [
-#         lazy-nvim
-#         vim-sleuth
-#         comment-nvim
-#         gitsigns-nvim
-#         which-key-nvim
-#         telescope-nvim
-#         telescope-fzf-native-nvim
-#         telescope-ui-select-nvim
-#         plenary-nvim
-#         nvim-web-devicons
-#         nvim-lspconfig
-#         fidget-nvim
-#         neodev-nvim
-#         conform-nvim
-#         nvim-cmp
-#         luasnip
-#         cmp_luasnip
-#         cmp-nvim-lsp
-#         cmp-path
-#         tokyonight-nvim
-#         todo-comments-nvim
-#         mini-nvim
-#         (
-#           nvim-treesitter.withPlugins (p: [
-#             p.awk
-#             p.bash
-#             p.dockerfile
-#             p.git_config
-#             p.git_rebase
-#             p.gitattributes
-#             p.gitcommit
-#             p.gitignore
-#             p.go
-#             p.gomod
-#             p.gosum
-#             p.gotmpl
-#             p.gowork
-#             p.hcl
-#             p.helm
-#             p.html
-#             p.ini
-#             p.jq
-#             p.json
-#             p.lua
-#             p.luadoc
-#             p.make
-#             p.markdown
-#             p.nix
-#             p.ssh_config
-#             p.terraform
-#             p.toml
-#             p.tsv
-#             p.typescript
-#             p.vim
-#             p.vimdoc
-#             p.vue
-#             p.yaml
-#           ])
-#         )
-#       ];
-#     };
-#   };
-# }
