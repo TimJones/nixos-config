@@ -5,10 +5,11 @@
   imports = [
     ./plugins/conform.nix
     ./plugins/gitsigns.nix
-    ./plugins/which-key.nix
     ./plugins/lsp.nix
     ./plugins/nvim-cmp.nix
+    ./plugins/telescope.nix
     ./plugins/treesitter.nix
+    ./plugins/which-key.nix
   ];
 
   programs.nixvim = {
