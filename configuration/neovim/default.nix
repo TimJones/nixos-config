@@ -6,6 +6,7 @@
     ./plugins/conform.nix
     ./plugins/gitsigns.nix
     ./plugins/which-key.nix
+    ./plugins/lsp.nix
   ];
 
   programs.nixvim = {
@@ -93,32 +94,6 @@
     };
 
     keymaps = [
-      # Diagnostic keymaps
-      {
-        mode = "n";
-        key = "[d";
-        action.__raw = "vim.diagnostic.goto_prev";
-        options.desc = "Go to previous [D]iagnostic message";
-      }
-      {
-        mode = "n";
-        key = "]d";
-        action.__raw = "vim.diagnostic.goto_next";
-        options.desc = "Go to next [D]iagnostic message";
-      }
-      {
-        mode = "n";
-        key = "<leader>e";
-        action.__raw = "vim.diagnostic.open_float";
-        options.desc = "Show diagnostic [E]rror messages";
-      }
-      {
-        mode = "n";
-        key = "<leader>q";
-        action.__raw = "vim.diagnostic.setloclist";
-        options.desc = "Open diagnostic [Q]uickfix list";
-      }
-
       # Clear highlights on search when pressing <Esc> in normal mode
       {
         mode = "n";
@@ -207,7 +182,7 @@
 
     # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extraplugins#extraplugins
     extraPlugins = with pkgs.vimPlugins; [
-      # Useful for getting pretty icons, but requires a Nerd Font.
+      # Useful for getting pretty icons, requires a Nerd Font.
       nvim-web-devicons
     ];
 
