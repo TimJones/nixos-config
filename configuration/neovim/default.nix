@@ -7,6 +7,7 @@
     ./plugins/gitsigns.nix
     ./plugins/which-key.nix
     ./plugins/lsp.nix
+    ./plugins/nvim-cmp.nix
   ];
 
   programs.nixvim = {
