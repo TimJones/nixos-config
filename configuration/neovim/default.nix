@@ -8,6 +8,7 @@
     ./plugins/which-key.nix
     ./plugins/lsp.nix
     ./plugins/nvim-cmp.nix
+    ./plugins/treesitter.nix
   ];
 
   programs.nixvim = {
