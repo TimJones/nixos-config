@@ -13,7 +13,17 @@
           gopls.enable = true;
           nixd.enable = true;
           terraformls.enable = true;
-          yamlls.enable = true;
+          yamlls = {
+            enable = true;
+            settings = {
+              schemas = {
+                "http://json.schemastore.org/kustomization" = "kustomization.{yml,yaml}";
+                "http://json.schemastore.org/chart" = "Chart.{yml,yaml}";
+                # Assume any other yaml is kubernetes, not sure how else to detect this elegantly
+                kubernetes = "*.yaml";
+              };
+            };
+          };
         };
 
         keymaps = {
