@@ -109,6 +109,10 @@
         "$mod, S, togglespecialworkspace, magic"
         "$mod SHIFT, S, movetoworkspace, special:magic"
 
+        # Screenshot
+        ", print, exec, ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy"
+        "$mod, print, exec, ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" -t ppm - | ${pkgs.satty}/bin/satty -f -"
+
         # Switch workspaces...
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
