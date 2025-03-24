@@ -6,6 +6,7 @@
     ./plugins/conform.nix
     ./plugins/gitsigns.nix
     ./plugins/lsp.nix
+    ./plugins/mini.nix
     ./plugins/nvim-cmp.nix
     ./plugins/telescope.nix
     ./plugins/treesitter.nix
@@ -20,11 +21,6 @@
       enable = true;
       settings.flavour = "mocha";
     };
-
-    # Settings based on kickstart.nvim
-    #  ref - https://github.com/nvim-lua/kickstart.nvim
-    #  globals = vim.g.*
-    #  options = vim.opt.*
 
     clipboard = {
       register = "unnamedplus";
