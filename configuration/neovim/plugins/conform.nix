@@ -35,6 +35,7 @@
         formatters_by_ft = {
           lua = [ "stylua" ];
           go = [ [ "gofumpt" "gofmt" ] ];
+          nix = [ "nixfmt" ];
           tf = [ "terraform fmt" ];
           yaml = [ "yamlfmt" ];
         };
