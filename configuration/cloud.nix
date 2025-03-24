@@ -12,4 +12,8 @@
     google-cloud-sdk
     terraform
   ];
+
+  environment.persistence."/persist".users.tim.directories = [
+    ".aws"
+  ];
 }
