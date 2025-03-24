@@ -7,6 +7,8 @@
     omnictl
     krew
     kubelogin-oidc
+    kustomize
+    helm
   ];
 
   environment.persistence."/persist".users.tim.directories = [
