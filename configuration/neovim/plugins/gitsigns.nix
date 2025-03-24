@@ -76,7 +76,6 @@
           end
         '';
         options.desc = "Git: [H]unk [S]tage";
-        };
       }
       {
         mode = "n";
