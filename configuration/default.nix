@@ -62,6 +62,15 @@
   # Allow realtime priority to user processes
   security.rtkit.enable = true;
 
+  # Auto-discover TZ
+  services = {
+    automatic-timezoned.enable = true;
+    geoclue2 = {
+      submissionUrl = "https://api.beacondb.net/v2/geosubmit";
+      geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
+    };
+  };
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }

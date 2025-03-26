@@ -10,7 +10,6 @@
   nixpkgs.hostPlatform = "x86_64-linux";
 
   networking.hostName = hostName;
-  time.timeZone = "Europe/Madrid";
 
   hardware = {
     bluetooth.enable = true;
