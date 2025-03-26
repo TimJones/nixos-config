@@ -7,6 +7,7 @@
     ./wofi.nix
     ./kitty.nix
     ./kanshi.nix
+    ./hyprlock.nix
   ];
 
   services.udisks2.enable = true;
@@ -88,6 +89,8 @@
         "$mod, C, killactive"
         "$mod, M, fullscreen, 1" # Maximise
         "$mod, F, fullscreen, 0" # Fullscreen
+        # Mute and lock the system
+        "$mod, L, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ 1 && ${pkgs.hyprlock}/bin/hyprlock"
 
         # App launchers
         "$mod, return, exec, kitty"
