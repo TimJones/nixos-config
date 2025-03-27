@@ -84,6 +84,10 @@
         "blueman-applet"
       ];
 
+      bindl = [
+        ", switch:Lid Switch, exec, ${pkgs.hyprlock}/bin/hyprlock"
+      ];
+
       bind = [
         "$mod, Q, exit"
         "$mod, C, killactive"
