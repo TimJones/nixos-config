@@ -93,6 +93,8 @@
         "$mod, C, killactive"
         "$mod, M, fullscreen, 1" # Maximise
         "$mod, F, fullscreen, 0" # Fullscreen
+        "$mod, O, layoutmsg, orientationcycle left top"
+
         # Mute and lock the system
         "$mod, L, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ 1 && ${pkgs.hyprlock}/bin/hyprlock"
 
