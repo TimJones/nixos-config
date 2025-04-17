@@ -177,7 +177,11 @@
       enableVteIntegration = true;
       autosuggestion.enable = true;
 
-      history.ignoreAllDups = true;
+      history = {
+        append = true;
+        ignoreAllDups = true;
+        path = "$HOME/.local/share/zsh/history";
+      };
 
       dirHashes = {
         personal = "~/projects/personal";
@@ -187,11 +191,9 @@
   };
 
   environment.persistence."/persist".users.tim = {
-    files = [
-      ".zsh_history"
-    ];
     directories = [
       ".local/share/direnv"
+      ".local/share/zsh"
     ];
   };
 }
