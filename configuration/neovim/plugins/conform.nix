@@ -32,6 +32,12 @@
             }
           end
         '';
+        formatters = {
+          yamlfmt.prepend_args = [
+            "-formatter"
+            "retain_line_breaks_single=true,scan_folded_as_literal=true"
+          ];
+        };
         formatters_by_ft = {
           lua = [ "stylua" ];
           go = [ [ "gofumpt" "gofmt" ] ];
