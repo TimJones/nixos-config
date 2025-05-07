@@ -16,12 +16,14 @@
   sops.secrets = {
     "wifi/home/psk" = { };
     "wifi/mum/psk" = { };
+    "wifi/cate/psk" = { };
     "wifi/jiloca/psk" = { };
   };
   # And create files that can be used with envsubst
   sops.templates."wifi-psk.env".content = ''
     HOME_PSK=${config.sops.placeholder."wifi/home/psk"}
     MUM_PSK=${config.sops.placeholder."wifi/mum/psk"}
+    CATE_PSK=${config.sops.placeholder."wifi/mum/psk"}
     JILOCA_PSK=${config.sops.placeholder."wifi/jiloca/psk"}
   '';
 
@@ -72,6 +74,25 @@
           wifi-security = {
             key-mgmt = "wpa-psk";
             psk = "$MUM_PSK";
+          };
+          ipv4 = {
+            method = "auto";
+            dns = "1.1.1.1;8.8.8.8;";
+          };
+          ipv6.method = "disabled";
+        };
+        cate-wifi = {
+          connection = {
+            id = "VM6425419";
+            type = "wifi";
+          };
+          wifi = {
+            mode = "infrastructure";
+            ssid = "VM6425419";
+          };
+          wifi-security = {
+            key-mgmt = "wpa-psk";
+            psk = "$CATE_PSK";
           };
           ipv4 = {
             method = "auto";
