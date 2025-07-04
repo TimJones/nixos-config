@@ -109,7 +109,7 @@
 
         aws = {
           style = "bg:red fg:base";
-          format = "[$symbol ($profile )(\($region\) )(\[$duration\] )]($style)";
+          format = "[$symbol ($profile )(\($region\) )(\($duration\) )]($style)";
           symbol = "";
         };
 
