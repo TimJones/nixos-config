@@ -9,7 +9,7 @@
     { pkgs, ... }:
     {
       imports = with inputs.self.modules.nixos; [
-        system-minimal
+        system-base
         systemd-boot
       ];
 
