@@ -8,6 +8,7 @@
     (self.factory.user {
       username = "test";
       isAdmin = true;
+      hasSSH = true;
     })
     {
       nixos.test.users.users.test.password = "test";
