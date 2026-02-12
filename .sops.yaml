@@ -5,6 +5,7 @@ keys:
   # Host keys
   - &laptop-02 age136xxlufx2lvp5tvc8d7mx7y2qhq4vh4k973xdc9tcs2wtv592q6qeh0gag
   - &desktop-02 age19zej0lsu5w6xqyey53mnc3r3cxvvdwckzezfc42vu8mplraf4y2shq90hl
+  - &test-vm age1yyshxyhcqfdqx9yuylttw9zr4x7699djcwv7pd9rc9ynpv8ysunsgqxgan
 creation_rules:
   - path_regex: configuration/secrets.yaml
     key_groups:
@@ -14,6 +15,12 @@ creation_rules:
           - *tim
           - *laptop-02
           - *desktop-02
+  - path_regex: modules/boxen/test-vm/secrets.yaml
+    key_groups:
+      - age:
+          - *test-vm
+          - *tim
 stores:
   yaml:
     indent: 2
+    
