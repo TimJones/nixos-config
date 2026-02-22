@@ -14,6 +14,7 @@
             home = "/home/${username}";
             extraGroups = lib.optionals isAdmin [
               "wheel"
+              "tss"
             ];
             openssh.authorizedKeys.keyFiles = lib.optionals hasSSH [
               ./${username}/id_ed25519.pub
