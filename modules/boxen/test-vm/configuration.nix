@@ -11,7 +11,7 @@
       imports = with inputs.self.modules.nixos; [
         system-base
         systemd-boot
-        tpm
+        tpm-host-secrets
       ];
 
       boot.kernelPackages = pkgs.linuxPackages_latest;
