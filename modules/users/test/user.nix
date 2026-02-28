@@ -1,17 +1,13 @@
 {
   self,
-  lib,
   ...
+
 }:
 {
-  flake.modules = lib.mkMerge [
-    (self.factory.user {
-      username = "test";
-      isAdmin = true;
-      hasSSH = true;
-    })
-    {
-      nixos.test.users.users.test.password = "test";
-    }
-  ];
+  flake.modules = self.factory.user {
+    username = "test";
+    isAdmin = true;
+    hasSSH = true;
+    hasPwdHash = true;
+  };
 }
