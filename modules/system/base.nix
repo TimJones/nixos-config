@@ -8,6 +8,7 @@
       system-minimal
       ssh
       sops-nix
+      disko
     ];
   };
 }

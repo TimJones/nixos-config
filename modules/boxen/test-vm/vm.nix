@@ -20,6 +20,11 @@
           memorySize = 4096;
           cores = 4;
         };
+
+        vmVariantWithDisko = {
+          virtualisation.fileSystems."/home".neededForBoot = true;
+        };
+
         forwardPorts = [
           {
             from = "host";
