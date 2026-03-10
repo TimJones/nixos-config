@@ -16,6 +16,7 @@
 
   flake.factory.diskoMainDevice =
     {
+      config,
       mainDevice,
       swapSize ? "2G",
       encrypt ? false,
@@ -42,6 +43,14 @@
           };
           home = {
             mountpoint = "/home";
+            mountOptions = [
+              "compress=zstd"
+              "noatime"
+              "nodiratime"
+            ];
+          };
+          persistence = inputs.self.lib.mkIfPersistence config {
+            mountpoint = "/persist";
             mountOptions = [
               "compress=zstd"
               "noatime"

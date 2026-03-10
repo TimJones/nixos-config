@@ -3,12 +3,15 @@
   ...
 }:
 {
-  flake.modules.nixos."test-vm" = {
-    imports = with inputs.self.factory; [
-      (diskoMainDevice {
-        mainDevice = "/dev/vda";
-        encrypt = true;
-      })
-    ];
-  };
+  flake.modules.nixos."test-vm" =
+    { config, ... }:
+    {
+      imports = with inputs.self.factory; [
+        (diskoMainDevice {
+          inherit config;
+          mainDevice = "/dev/vda";
+          encrypt = true;
+        })
+      ];
+    };
 }
