@@ -16,6 +16,7 @@
 
   flake.factory.diskoMainDevice =
     {
+      config,
       mainDevice,
       swapSize ? "2G",
       encrypt ? false,
@@ -23,6 +24,7 @@
     let
       btrfsContent = {
         type = "btrfs";
+        extraArgs = [ "-L" "os-root" "-f" ];
         subvolumes = {
           root = {
             mountpoint = "/";
@@ -48,11 +50,20 @@
               "nodiratime"
             ];
           };
+          persist = inputs.self.lib.mkIfPersistence config {
+            mountpoint = "/persist";
+            mountOptions = [
+              "compress=zstd"
+              "noatime"
+              "nodiratime"
+            ];
+          };
           swap = {
             mountpoint = "/swap";
             swap.swapfile.size = swapSize;
           };
         };
+        postCreateHook = inputs.self.lib.mkIfPersistence config (builtins.readFile ./create-clean-snapshots.sh);
       };
       luksContent = {
         type = "luks";

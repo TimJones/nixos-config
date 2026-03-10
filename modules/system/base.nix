@@ -9,6 +9,7 @@
       ssh
       sops-nix
       disko
+      impermanence
     ];
   };
 }

@@ -4,7 +4,7 @@
 }:
 {
   flake.modules.nixos."test-vm" =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       imports = [
         "${inputs.nixpkgs}/nixos/modules/virtualisation/qemu-vm.nix"
@@ -23,6 +23,7 @@
 
         vmVariantWithDisko = {
           virtualisation.fileSystems."/home".neededForBoot = true;
+          virtualisation.fileSystems."/persist".neededForBoot = inputs.self.lib.mkIfPersistence config true;
         };
 
         forwardPorts = [
