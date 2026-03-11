@@ -21,4 +21,10 @@
         age
       ];
     };
+
+  flake.modules.homeManager.sops-nix = {
+    imports = [
+      inputs.sops-nix.homeManagerModules.sops
+    ];
+  };
 }
