@@ -10,4 +10,6 @@
     hasSSH = true;
     hasPwdHash = true;
   };
+
+  flake.homeConfigurations = self.lib.mkHomeManager "x86_64-linux" "test";
 }

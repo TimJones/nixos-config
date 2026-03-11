@@ -29,5 +29,13 @@
         "/var/lib/nixos"
       ];
     };
+
+    home-manager.sharedModules = [
+      {
+        home.persistence."/persist" = { };
+      }
+    ];
+
+    programs.fuse.userAllowOther = true;
   };
 }

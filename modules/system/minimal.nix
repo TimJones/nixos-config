@@ -20,4 +20,16 @@
       '';
     };
   };
+
+  flake.modules.homeManager.system-minimal =
+    {
+      config,
+      ...
+    }:
+    {
+      home = {
+        directory = "/home/${config.home.username}";
+        stateVersion = "25.11";
+      };
+    };
 }
