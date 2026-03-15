@@ -9,9 +9,9 @@
     { pkgs, ... }:
     {
       imports = with inputs.self.modules.nixos; [
-        system-base
         systemd-boot
         tpmHostSecrets
+        system-graphical
       ];
 
       boot.kernelPackages = pkgs.linuxPackages_latest;
