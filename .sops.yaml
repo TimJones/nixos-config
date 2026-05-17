@@ -35,6 +35,7 @@ creation_rules:
     key_groups:
       - age:
           - *tim
+          - *laptop-02
 stores:
   yaml:
     indent: 2
