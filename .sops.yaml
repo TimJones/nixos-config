@@ -36,6 +36,10 @@ creation_rules:
       - age:
           - *tim
           - *laptop-02
+  - path_regex: modules/network/wifi-psks.yaml
+    key_groups:
+      - age:
+          - *tim
 stores:
   yaml:
     indent: 2

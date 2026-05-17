@@ -1,0 +1,19 @@
+LlamasJones: ENC[AES256_GCM,data:IgQt3wQObiS3EA==,iv:q1tPOe6Kw2thwnx1eU2pReTXPpFFJeJdOs207zatnSE=,tag:XSjO2KtP42U+jVJ/2gzyPg==,type:str]
+VM6784418: ENC[AES256_GCM,data:SDXy30w2PpikEz1bNEDZ/Q==,iv:U0ZJRRRCUTKrcbePCf8oSf1AUS/IXs14Ew3eMmSV2dU=,tag:Mg8h5nHRNWQv+pjrTcKuBw==,type:str]
+VM6425419: ENC[AES256_GCM,data:zLGZUKOzwA44ANrv,iv:7ngUgsxdspK2qL5TbGQ6I/XFJ1+IUxznkikdALWcMKc=,tag:8vjNBgyeuqzfMceQ2vfHIg==,type:str]
+MOVISTAR_DC50: ENC[AES256_GCM,data:KzEsfuGob5HYetcdH2jyutXxc/w=,iv:OthOtcU8F2EButx4rBo4KI80DBuEQGuCp3JxS3MtvgM=,tag:KgnmuxGyplDIwyxKbeFNPQ==,type:str]
+sops:
+  age:
+    - recipient: age14y022wl4kddtsl6r54s8r3s6j75qc4e4tshhxw6sugy06qlvwa7sgrjfqs
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHcWpSMTJJR2hPM1NyakVp
+        am5ZeHA4ZitsTUR2YjNhc2FFdkVaM1lKMHhNCmMvRXE5OGJrV1JYSWRwOE9BYnhB
+        VndkSE5TZktKdWNiZTdER21jRDdZa3cKLS0tIHdFL1N5OXI0a2E5ZTc2SHZVa0J3
+        TFRvdUtTV1ZjcUVpd2kxTXp2ak1MQm8KlZpCkAWNO4+Jf5/bhjSWgRVCF+hTX3l1
+        hpT0LzSbG51UQzl1uk63iqhIXLWX7mw61Dnx/YHum1vkZ1j4bVh0Nw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-05-17T15:45:51Z"
+  mac: ENC[AES256_GCM,data:0Op5rQlWuIMH8ED+9uiiG5mCxTVKu6xj5LvSH4cRzqx47ZJLGaCc+1f5U8OjAKVgfHRvo2QkqXKrQUrO+ZB8ogQoP9mYC6XX8E4AompvlrKoZlNIIn2YH2XB1Gqs6OW5g4nt8ih6N5TO6oaH4o1mHkgstfJSlvpH+5M0q184qY0=,iv:IFIK3PeDVa3xE5v4F2cDvGffisBKjPQOqhMN699Uv6k=,tag:YGOLsxV8mMzsQc0weHPfUw==,type:str]
+  unencrypted_suffix: _unencrypted
+  version: 3.11.0
