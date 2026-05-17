@@ -12,11 +12,16 @@
         systemd-boot
         tpm-host-secrets
         system-base
+        wifi-settings
       ];
 
       boot.kernelPackages = pkgs.linuxPackages_latest;
 
       time.timeZone = "Europe/Madrid";
+
+      networking.interfaces."wlp1s0" = {
+        useDHCP = true;
+      };
 
       system.stateVersion = "25.11";
     };
