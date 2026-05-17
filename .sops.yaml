@@ -31,6 +31,10 @@ creation_rules:
     key_groups:
       - age:
           - *laptop-02
+  - path_regex: modules/users/tim/secrets.yaml
+    key_groups:
+      - age:
+          - *tim
 stores:
   yaml:
     indent: 2
