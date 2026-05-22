@@ -13,3 +13,7 @@ check-%: ## Runs the build system without activating it
 .PHONY: rehome
 rehome-%: ## Uses home-manager to reconfigure the home env
 	home-manager switch --flake .#$*
+
+.PHONY: installer-iso
+installer-iso: ## Builds the offline installer ISO image
+	nix build .#nixosConfigurations.installer.config.system.build.isoImage
