@@ -11,7 +11,7 @@
       imports = with inputs.self.modules.nixos; [
         systemd-boot
         tpm-host-secrets
-        system-base
+        system-terminal
         wifi-settings
       ];
 

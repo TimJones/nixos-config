@@ -3,7 +3,7 @@
   ...
 }:
 {
-  flake.modules.nixos.system-base = {
+  flake.modules.nixos.system-terminal = {
     imports = with inputs.self.modules.nixos; [
       system-minimal
       ssh
@@ -14,7 +14,7 @@
     ];
   };
 
-  flake.modules.homeManager.system-base = {
+  flake.modules.homeManager.system-terminal = {
     imports = with inputs.self.modules.homeManager; [
       system-minimal
       sops-nix

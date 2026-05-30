@@ -9,7 +9,7 @@
     { pkgs, ... }:
     {
       imports = with inputs.self.modules.nixos; [
-        system-base
+        system-terminal
         systemd-boot
         tpm-host-secrets
       ];
