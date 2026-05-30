@@ -20,6 +20,7 @@ in
       homeManager."${user}" = {
         imports = with inputs.self.modules.homeManager; [
           system-minimal
+          git
         ];
         home.username = "${user}";
 
