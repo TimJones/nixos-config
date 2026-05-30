@@ -27,5 +27,5 @@ in
     }
   ];
 
-  flake.homeConfigurations = self.lib.mkHomeManager "x86_64-linux" "${user}";
+  flake.homeConfigurations = self.lib.mkHomeManager "x86_64-linux" "26.05" "${user}";
 }

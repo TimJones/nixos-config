@@ -3,7 +3,7 @@
   ...
 }:
 {
-  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "laptop-02";
+  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "26.05" "laptop-02";
 
   flake.modules.nixos."laptop-02" =
     { pkgs, ... }:
@@ -22,7 +22,5 @@
       networking.interfaces."wlp1s0" = {
         useDHCP = true;
       };
-
-      system.stateVersion = "25.11";
     };
 }

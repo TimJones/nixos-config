@@ -3,7 +3,7 @@
   ...
 }:
 {
-  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "test-vm";
+  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "25.11" "test-vm";
 
   flake.modules.nixos."test-vm" =
     { pkgs, ... }:
@@ -17,7 +17,5 @@
       boot.kernelPackages = pkgs.linuxPackages_latest;
 
       time.timeZone = "Europe/Madrid";
-
-      system.stateVersion = "25.11";
     };
 }

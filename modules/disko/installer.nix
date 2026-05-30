@@ -3,7 +3,7 @@
   ...
 }:
 {
-  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "installer";
+  flake.nixosConfigurations = inputs.self.lib.mkNixos "x86_64-linux" "26.05" "installer";
 
   flake.modules.nixos.installer =
     { pkgs, lib, ... }:
