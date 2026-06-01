@@ -28,6 +28,7 @@ in
         imports = with inputs.self.modules.homeManager; [
           system-terminal
           git
+          nixvim
         ];
         home.username = "${user}";
       };
