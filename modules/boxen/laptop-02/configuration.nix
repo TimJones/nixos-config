@@ -9,9 +9,8 @@
     { pkgs, ... }:
     {
       imports = with inputs.self.modules.nixos; [
-        systemd-boot
-        tpm-host-secrets
         system-terminal
+        tpm-host-secrets
         wifi-settings
       ];
 

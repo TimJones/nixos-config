@@ -10,7 +10,6 @@
     {
       imports = with inputs.self.modules.nixos; [
         system-terminal
-        systemd-boot
         tpm-host-secrets
       ];
 

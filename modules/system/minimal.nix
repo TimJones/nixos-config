@@ -4,7 +4,11 @@
   };
 
   flake.modules.nixos.system-minimal = {
-    boot.initrd.systemd.enable = true;
+    boot = {
+      initrd.systemd.enable = true;
+      loader.systemd-boot.enable = true;
+    };
+
     nixpkgs.config.allowUnfree = true;
 
     nix = {
