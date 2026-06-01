@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   ...
 }:
 {
@@ -68,7 +69,10 @@
       luksContent = {
         type = "luks";
         name = "crypted";
-        settings.allowDiscards = true;
+        settings = {
+          allowDiscards = true;
+          crypttabExtraOpts = lib.mkIf encrypt [ "tpm2-device=auto" ];
+        };
         content = btrfsContent;
       };
     in
