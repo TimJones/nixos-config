@@ -11,6 +11,7 @@
       disko
       impermanence
       home-manager
+      zsh
     ];
   };
 
@@ -18,6 +19,7 @@
     imports = with inputs.self.modules.homeManager; [
       system-minimal
       sops-nix
+      zsh
     ];
   };
 }

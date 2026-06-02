@@ -17,13 +17,19 @@ in
       hasPwdHash = true;
     })
     {
+      nixos."${user}" =
+        { pkgs, ...}:
+        {
+          users.users."${user}".shell = pkgs.zsh;
+        };
+    }
+    {
       homeManager."${user}" = {
         imports = with inputs.self.modules.homeManager; [
-          system-minimal
+          system-terminal
           git
         ];
         home.username = "${user}";
-
       };
     }
   ];
