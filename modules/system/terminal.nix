@@ -18,6 +18,7 @@
   flake.modules.homeManager.system-terminal = {
     imports = with inputs.self.modules.homeManager; [
       system-minimal
+      ssh
       sops-nix
       zsh
     ];
