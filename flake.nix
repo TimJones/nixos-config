@@ -28,6 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Mic92/sops-nix";
     };
+    stylix.url = "github:nix-community/stylix?rev=525965744b770af79c985ae5c43c65e441dc8b29";
     systems.url = "github:nix-systems/default";
   };
 
