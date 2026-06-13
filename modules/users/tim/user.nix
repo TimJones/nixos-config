@@ -26,7 +26,7 @@ in
     {
       homeManager."${user}" = {
         imports = with inputs.self.modules.homeManager; [
-          system-terminal
+          system-graphical
           git
           nixvim
         ];

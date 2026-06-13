@@ -9,7 +9,7 @@
     { pkgs, ... }:
     {
       imports = with inputs.self.modules.nixos; [
-        system-terminal
+        system-graphical
         tpm-host-secrets
         wifi-settings
       ];
