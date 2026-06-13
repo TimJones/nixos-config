@@ -24,6 +24,8 @@
         keep-outputs = true
       '';
     };
+
+    services.dbus.implementation = "dbus";
   };
 
   flake.modules.homeManager.system-minimal =
