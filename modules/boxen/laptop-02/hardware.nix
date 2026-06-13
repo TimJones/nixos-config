@@ -23,4 +23,10 @@
       enableRedistributableFirmware = true;
     };
   };
+
+  flake.modules.homeManager.hyprland = {
+    wayland.windowManager.hyprland.settings = {
+      monitor = "desc:BOE NE135A1M-NY1, preferred, auto, 2";
+    };
+  };
 }
