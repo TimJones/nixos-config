@@ -29,6 +29,7 @@ in
           system-graphical
           git
           nixvim
+          direnv
         ];
         home.username = "${user}";
       };
