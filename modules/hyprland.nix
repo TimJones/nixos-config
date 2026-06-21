@@ -12,6 +12,9 @@
   };
 
   flake.modules.homeManager.hyprland = {
-    wayland.windowManager.hyprland.enable = true;
+    wayland.windowManager.hyprland = {
+      enable = true;
+      configType = "hyprlang"; # v0.55 supports both lua & hyprlang. TODO: migrate to lua.
+    };
   };
 }
