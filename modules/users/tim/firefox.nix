@@ -22,8 +22,11 @@
       commonSettings = {
         "browser.search.isUS" = false;
         "general.useragent.locale" = "en-GB";
+        "browser.aboutConfig.showWarning" = false;
         "browser.startup.page" = 3; # Load last session
         "browser.profiles.enabled" = false; # Non-declarative profiles
+        "extensions.autoDisableScopes" = 0; # Auto-enable side-loaded extensions
+        "media.autoplay.default" = 5; # Disable any kind of autoplaying media
       };
     in
     {
