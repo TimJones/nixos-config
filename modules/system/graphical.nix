@@ -18,6 +18,7 @@
       system-terminal
       hyprland
       kitty
+      firefox
     ];
   };
 }
