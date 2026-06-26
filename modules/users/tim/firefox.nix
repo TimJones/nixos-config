@@ -3,9 +3,28 @@
   ...
 }: {
   flake.modules.homeManager.tim =
-    { config, pkgs, ... }:
+    { config, lib, pkgs, ... }:
     let
-      addons = inputs.firefox-addons.packages.${pkgs.system};
+      addons =
+        (import inputs.nixpkgs {
+          inherit (pkgs) system;
+          overlays = [ inputs.firefox-addons.overlays.default ];
+          config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+            "onepassword-password-manager"
+          ];
+         }).firefox-addons;
+
+      commonAddons = with addons; [
+        ublock-origin
+        tree-style-tab
+      ];
+
+      commonSettings = {
+        "browser.search.isUS" = false;
+        "general.useragent.locale" = "en-GB";
+        "browser.startup.page" = 3; # Load last session
+        "browser.profiles.enabled" = false; # Non-declarative profiles
+      };
     in
     {
       programs.firefox.profiles = {
@@ -14,18 +33,30 @@
           isDefault = true;
           extensions = {
             force = true;
-            packages = with addons; [
-              ublock-origin
-              tree-style-tab
-            ];
+            packages = commonAddons;
           };
 
-          settings = {
-            "browser.search.isUS" = false;
-            "general.useragent.locale" = "en-GB";
-            "browser.startup.page" = 3; # Load last session
-          };
+          settings = commonSettings;
         };
+        work = {
+          id = 1;
+          isDefault = false;
+          extensions = {
+            force = true;
+            packages = commonAddons ++ [ addons.onepassword-password-manager ];
+          };
+
+          settings = commonSettings;
+        };
+      };
+
+      xdg.desktopEntries.firefox-work = {
+        name = "Firefox (Work)";
+        genericName = "Web Browser";
+        exec = "firefox -P work --name firefox-work %U";
+        icon = "firefox";
+        categories = [ "Network" "WebBrowser" ];
+        startupNotify = true;
       };
   };
 }
