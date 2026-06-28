@@ -8,6 +8,8 @@ dragons, yadda yadda yadda.
 
 * [Denful Framework](https://den.denful.dev/) to configure and maintain
 various NixOS boxen.
+* [disko](https://github.com/nix-community/disko) for system partition
+& filesystem management.
 
 ## Use
 
@@ -15,6 +17,8 @@ various NixOS boxen.
 * `nix flake lock` (re)generate flake.lock.
 * `nix flake update` update all flakes in flake.lock.
 * `nix flake check` check flake parses correctly.
+* `nix run .#<name>` build the `<name>` configuration.
+* `nix run .#<name> -- switch` switch to configuration for `<name>`.
 
 ## Layout
 
