@@ -1,8 +1,17 @@
 { lib, den, ... }:
 {
-  den.default.nixos.system.stateVersion = "26.05";
-  den.default.homeManager.home.stateVersion = "26.05";
-
   # enable homeManager by default
   den.schema.user.classes = lib.mkDefault [ "homeManager" ];
+
+  den.default = {
+    # Set networking.hostName from den.hosts.<name>
+    includes = [ den.batteries.hostname ];
+
+    nixos = {
+      system.stateVersion = "26.05";
+      boot.loader.systemd-boot.enable = true;
+    };
+
+    homeManager.home.stateVersion = "26.05";
+  };
 }
