@@ -35,6 +35,8 @@ Each box is defined here, loosely following standard NixOS conventions.
 * `secrets.yaml`: Host-level secrets.
 * `tpm.age`: If TPMv2.0 is available, this is the age-plugin-tpm key for the
 TPM device to manage the host secrets.
+* `ssh_(rsa|ed25519).pub`: If SSH server is configured, this is the RSA/ED25519
+public key.
 
 ### `modules/users/<name>`
 
