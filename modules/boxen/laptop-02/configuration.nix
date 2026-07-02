@@ -4,6 +4,7 @@
     includes = [
       den.aspects.host-secrets
       den.aspects.impermanence
+      den.aspects.ssh
     ];
 
     nixos = { pkgs, ... }: {

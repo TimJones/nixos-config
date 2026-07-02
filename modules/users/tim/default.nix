@@ -5,6 +5,7 @@
       den.batteries.primary-user
       den.batteries.tpm-access
       (den.batteries.user-shell "zsh")
+      den.aspects.tim.ssh
     ];
 
     permHome = {
