@@ -13,6 +13,8 @@ various NixOS boxen.
 * [impermanence](https://github.com/nix-community/impermanence) for permanent
 system state.
 * [sops-nix](https://github.com/mic92/sops-nix) for secrets management.
+* [Hyprland](https://wiki.hypr.land/) Wayland compositor with
+[dms](https://danklinux.com/docs/) shell.
 
 ## Use
 

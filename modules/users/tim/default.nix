@@ -6,6 +6,7 @@
       den.batteries.tpm-access
       den.aspects.tim.zsh
       den.aspects.tim.cli
+      den.aspects.tim.gui
     ];
 
     permHome.directories = [ "projects" ];
