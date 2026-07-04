@@ -4,6 +4,7 @@
     includes = [
       den.aspects.tim.ssh
       den.aspects.tim.git
+      den.aspects.tim.direnv
     ];
   };
 }
