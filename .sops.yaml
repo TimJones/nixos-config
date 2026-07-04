@@ -1,0 +1,11 @@
+keys:
+  # Host keys
+  - &laptop-02 age1tpm1qggj7xcx9f8a7aryv6cuwhxg0f67kxnrq0jd09amwudepachfk42z5n0g25
+creation_rules:
+  - path_regex: modules/boxen/laptop-02/secrets.yaml
+    key_groups:
+      - age:
+          - *laptop-02
+stores:
+  yaml:
+    indent: 2

@@ -1,6 +1,8 @@
 { den, ... }:
 {
   den.aspects.laptop-02 = {
+    includes = [ den.aspects.host-secrets ];
+
     nixos = { pkgs, ... }: {
       boot.kernelPackages = pkgs.linuxPackages_latest;
       services.automatic-timezoned.enable = true;

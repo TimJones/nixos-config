@@ -10,6 +10,7 @@ dragons, yadda yadda yadda.
 various NixOS boxen.
 * [disko](https://github.com/nix-community/disko) for system partition
 & filesystem management.
+* [sops-nix](https://github.com/mic92/sops-nix) for secrets management.
 
 ## Use
 
@@ -29,6 +30,9 @@ Each box is defined here, loosely following standard NixOS conventions.
 * `default.nix`: Denful host declaration.
 * `configuration.nix`: Software configuration, including system-wide aspects.
 * `hardware.nix`: Hardware definitions, including system-wide aspects.
+* `secrets.yaml`: Host-level secrets.
+* `tpm.age`: If TPMv2.0 is available, this is the age-plugin-tpm key for the
+TPM device to manage the host secrets.
 
 ### `modules/users/<name>`
 
