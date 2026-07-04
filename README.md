@@ -22,6 +22,8 @@ system state.
 * `nix flake check` check flake parses correctly.
 * `nix run .#<name>` build the `<name>` configuration.
 * `nix run .#<name> -- switch` switch to configuration for `<name>`.
+* `nix build .#installer-iso` build the offline installer ISO image (output to
+`results/iso/nixos-offline-installer.iso`).
 
 ## Layout
 
@@ -50,3 +52,18 @@ General use aspects.
 Aspects should generally be kept to a single file, named `<aspect-name>.nix`.  
 Aspects that need to include larger scripts or additional definitions get
 sub-directories, named `<aspect-name>/default.nix`.
+
+## Special cases
+
+### `modules/installer-iso.nix`
+
+Creates and offline installer ISO image for all boxen defined in this repo.
+It does so by creating a target `nixosConfiguration` itself, then collecting
+all the outputs of all the other `nixosConfigurations` and dependencies into a
+single closure. That closure is added to the system and thus all outputs from
+all systems become available in the `installer` system.  Then each box gets a
+simple wrapper script to call `disk-install` with the specific target install
+disk.  
+Once built, write it to a USB device (`dd if=result/iso/nixos-offline-installer.iso
+bs=4M status=progress oflag=sync of=/dev/<usb-device>`), boot from it, then run
+`install-<box-name>`.
