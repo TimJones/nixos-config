@@ -7,6 +7,7 @@
       (den.batteries.user-shell "zsh")
       den.aspects.tim.ssh
       den.aspects.host-secrets
+      den.aspects.tim.git
     ];
 
     permHome = {
