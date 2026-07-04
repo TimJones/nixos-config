@@ -9,5 +9,23 @@
     ];
 
     permHome.directories = [ "projects" ];
+
+    nixos = {
+      users.mutableUsers = false;
+
+      sops.secrets = {
+        "tim/pwd_hash" = {
+          sopsFile = ./secrets.yaml;
+          neededForUsers = true;
+          key = "pwd_hash";
+        };
+      };
+    };
+
+    user =
+      { osConfig, ... }:
+      {
+        hashedPasswordFile = osConfig.sops.secrets."tim/pwd_hash".path;
+      };
   };
 }
