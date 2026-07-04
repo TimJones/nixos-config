@@ -8,6 +8,7 @@
       den.aspects.tim.ssh
       den.aspects.host-secrets
       den.aspects.tim.git
+      den.aspects.tim.direnv
     ];
 
     permHome = {
