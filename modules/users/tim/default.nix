@@ -6,5 +6,11 @@
       den.batteries.tpm-access
       (den.batteries.user-shell "zsh")
     ];
+
+    permHome = {
+      directories = [
+        "projects"
+      ];
+    };
   };
 }

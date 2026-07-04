@@ -6,9 +6,16 @@
   };
 
   den.aspects.os-disk.nixos =
-    { config, lib, ... }:
+    {
+      config,
+      options,
+      lib,
+      ...
+    }:
     let
       cfg = config.os-disk;
+
+      withImperm = options ? environment.persistence;
 
       btrfsContent = {
         type = "btrfs";
@@ -46,7 +53,22 @@
             mountpoint = "/swap";
             swap.swapfile.size = cfg.swap.size;
           };
+        }
+        // lib.optionalAttrs withImperm {
+          persist = {
+            mountpoint = config.impermanence.persistence-dir;
+            mountOptions = [
+              "compress=zstd"
+              "noatime"
+              "nodiratime"
+            ];
+          };
         };
+        postCreateHook = lib.mkIf withImperm (
+          builtins.replaceStrings [ "@persistenceDir@" ] [ config.impermanence.persistence-dir ] (
+            builtins.readFile ./create-clean-snapshots.sh
+          )
+        );
       };
 
       luksContent = {
