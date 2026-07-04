@@ -1,39 +1,44 @@
-{ den, ... }:
+{ den, lib, ... }:
 {
-  den.aspects.tim = {
-    includes = [
-      den.batteries.primary-user
-      den.batteries.tpm-access
-      den.aspects.tim.zsh
-      den.aspects.tim.ssh
-      den.aspects.host-secrets
-      den.aspects.tim.git
-      den.aspects.tim.direnv
-      den.aspects.tim.nixvim
-    ];
-
-    permHome = {
-      directories = [
-        "projects"
+  den.aspects.tim =
+    { host, ... }:
+    {
+      includes = [
+        den.batteries.primary-user
+        den.batteries.tpm-access
+        den.aspects.tim.zsh
+        den.aspects.tim.ssh
+        den.aspects.host-secrets
+        den.aspects.tim.git
+        den.aspects.tim.direnv
+        den.aspects.tim.nixvim
+      ]
+      ++ lib.optionals host.hasGui [
+        den.aspects.tim.hyprland
       ];
-    };
 
-    nixos = {
-      users.mutableUsers = false;
+      permHome = {
+        directories = [
+          "projects"
+        ];
+      };
 
-      sops.secrets = {
-        "tim/pwd_hash" = {
-          sopsFile = ./secrets.yaml;
-          neededForUsers = true;
-          key = "pwd_hash";
+      nixos = {
+        users.mutableUsers = false;
+
+        sops.secrets = {
+          "tim/pwd_hash" = {
+            sopsFile = ./secrets.yaml;
+            neededForUsers = true;
+            key = "pwd_hash";
+          };
         };
       };
-    };
 
-    user =
-      { osConfig, ... }:
-      {
-        hashedPasswordFile = osConfig.sops.secrets."tim/pwd_hash".path;
-      };
-  };
+      user =
+        { osConfig, ... }:
+        {
+          hashedPasswordFile = osConfig.sops.secrets."tim/pwd_hash".path;
+        };
+    };
 }

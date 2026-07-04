@@ -6,6 +6,7 @@
       den.aspects.impermanence
       den.aspects.ssh
       den.aspects.wifi
+      den.aspects.hyprland
     ];
 
     nixos = { pkgs, ... }: {
