@@ -5,6 +5,7 @@
       den.aspects.host-secrets
       den.aspects.impermanence
       den.aspects.ssh
+      den.aspects.wifi
     ];
 
     nixos = { pkgs, ... }: {

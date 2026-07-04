@@ -14,6 +14,11 @@ creation_rules:
       - age:
           - *laptop-02
           - *tim
+  - path_regex: modules/network/wifi.yaml
+    key_groups:
+      - age:
+          - *laptop-02
+          - *tim
 stores:
   yaml:
     indent: 2
