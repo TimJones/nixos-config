@@ -1,0 +1,30 @@
+(
+  persistence_dir="@persistenceDir@"
+
+  btrfs_mnt=$(mktemp -d)
+  mount -L os-root "${btrfs_mnt}" -o subvol=/
+  trap "umount ${btrfs_mnt}; rm -rf ${btrfs_mnt}" EXIT
+
+  delete_subvolume_recursively() {
+    IFS=$'\n'
+    for vol in $(btrfs subvolume list -o "${1}" | cut -d ' ' -f 9-); do
+      delete_subvolume_recursively "${btrfs_mnt}/${vol}"
+    done
+    btrfs subvolume delete "${1}"
+  }
+
+  for vol in root home; do
+    if [[ -e "${btrfs_mnt}/${vol}" ]] && [[ -e "${btrfs_mnt}${persistence_dir}/${vol}/new" ]]; then
+        timestamp=$(date --date="@$(stat -c %Y ${btrfs_mnt}/${vol})" "+%Y-%m-%-d_%H:%M:%S")
+        mv "${btrfs_mnt}/${vol}" "${btrfs_mnt}${persistence_dir}/${vol}/${timestamp}"
+        btrfs property set "${btrfs_mnt}${persistence_dir}/${vol}/${timestamp}" ro true
+    fi
+
+    btrfs subvolume snapshot "${btrfs_mnt}${persistence_dir}/${vol}/new" "${btrfs_mnt}/${vol}"
+
+    for snap in $(find "${btrfs_mnt}${persistence_dir}/${vol}/" -maxdepth 1 -mtime +30 -not -name new); do
+      btrfs property set "${snap}" ro false
+      delete_subvolume_recursively "${snap}"
+    done
+  done
+)
