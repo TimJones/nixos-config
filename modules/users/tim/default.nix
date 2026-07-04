@@ -9,6 +9,7 @@
       den.aspects.host-secrets
       den.aspects.tim.git
       den.aspects.tim.direnv
+      den.aspects.tim.nixvim
     ];
 
     permHome = {
