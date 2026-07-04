@@ -1,7 +1,10 @@
 { den, ... }:
 {
   den.aspects.laptop-02 = {
-    includes = [ den.aspects.host-secrets ];
+    includes = [
+      den.aspects.host-secrets
+      den.aspects.impermanence
+    ];
 
     nixos = { pkgs, ... }: {
       boot.kernelPackages = pkgs.linuxPackages_latest;

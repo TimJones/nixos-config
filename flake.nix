@@ -18,6 +18,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     import-tree.url = "github:vic/import-tree";
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";

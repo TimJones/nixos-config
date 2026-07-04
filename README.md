@@ -10,6 +10,8 @@ dragons, yadda yadda yadda.
 various NixOS boxen.
 * [disko](https://github.com/nix-community/disko) for system partition
 & filesystem management.
+* [impermanence](https://github.com/nix-community/impermanence) for permanent
+system state.
 * [sops-nix](https://github.com/mic92/sops-nix) for secrets management.
 
 ## Use
