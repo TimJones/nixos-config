@@ -4,7 +4,7 @@
     includes = [
       den.batteries.primary-user
       den.batteries.tpm-access
-      (den.batteries.user-shell "zsh")
+      den.aspects.tim.zsh
       den.aspects.tim.cli
     ];
 
