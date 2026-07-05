@@ -15,6 +15,7 @@
       ]
       ++ lib.optionals host.hasGui [
         den.aspects.tim.hyprland
+        den.aspects.tim.firefox
       ];
 
       permHome = {
