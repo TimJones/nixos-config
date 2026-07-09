@@ -6,6 +6,7 @@
       den.aspects.tim.git
       den.aspects.tim.direnv
       den.aspects.tim.nixvim
+      den.aspects.tim.gpg
     ];
   };
 }
