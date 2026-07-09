@@ -7,6 +7,7 @@
       den.aspects.tim.direnv
       den.aspects.tim.nixvim
       den.aspects.tim.gpg
+      den.aspects.tim.password-store
     ];
   };
 }
