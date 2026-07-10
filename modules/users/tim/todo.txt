@@ -1,0 +1,1 @@
+gnumake go gotools jq yq-go kubernetes-helm kustomize ldns rclone vendir gotools kubebuilder go-containerregistry
