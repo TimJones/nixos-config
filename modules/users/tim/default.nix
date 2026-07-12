@@ -7,6 +7,7 @@
       den.aspects.tim.zsh
       den.aspects.tim.cli
       den.aspects.tim.gui
+      den.aspects.tim.stylix
     ];
 
     permHome.directories = [ "projects" ];

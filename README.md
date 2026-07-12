@@ -15,6 +15,7 @@ system state.
 * [sops-nix](https://github.com/mic92/sops-nix) for secrets management.
 * [Hyprland](https://wiki.hypr.land/) Wayland compositor with
 [dms](https://danklinux.com/docs/) shell.
+* [stylix](https://nix-community.github.io/stylix/) for theming.
 
 ## Use
 
