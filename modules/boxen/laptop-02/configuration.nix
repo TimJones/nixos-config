@@ -7,6 +7,7 @@
       den.aspects.ssh
       den.aspects.wireless
       den.aspects.dms
+      den.aspects.docker
     ];
 
     nixos = { pkgs, ... }: {
