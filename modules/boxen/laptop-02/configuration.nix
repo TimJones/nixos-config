@@ -6,6 +6,7 @@
       den.aspects.impermanence
       den.aspects.ssh
       den.aspects.wireless
+      den.aspects.bluetooth
       den.aspects.dms
       den.aspects.docker
     ];
