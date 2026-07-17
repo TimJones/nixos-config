@@ -8,10 +8,19 @@
         stdlib = builtins.readFile ./stdlib.sh;
         enableZshIntegration = true;
 
-        config.whitelist.prefix = [
-          "~/projects/personal"
-        ];
+        config = {
+          global.strict_env = true;
+          whitelist.prefix = [
+            "~/projects/personal"
+            "~/projects/work"
+          ];
+        };
       };
+
+      xdg.configFile."direnv/envs/core".text = ''
+        export KUBECONFIG=~/.kube/core.yaml
+        export TALOSCONFIG=~/.talos/core.yaml
+      '';
     };
   };
 }
