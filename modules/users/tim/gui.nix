@@ -6,6 +6,7 @@
       den.aspects.tim.firefox
       den.aspects.tim.kitty
       den.aspects.tim.slack
+      den.aspects.tim.steam
     ];
   };
 }
